@@ -1,0 +1,701 @@
+* {
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    transition: all ease 0.1s;
+}
+
+* a {
+    color: rgb(32, 207, 207);
+}
+html,
+body {
+
+    scroll-behavior: smooth;
+}
+body {
+    background-color: rgb(0, 81, 112);
+}
+.btn_azul_claro {
+    color: rgb(54, 204, 204);
+    background-color: transparent;
+    border: none;
+    font-size: 18px;
+}
+
+.btn_deletar {
+    color: rgb(102, 13, 2);
+    background-color: transparent;
+    border: none;
+    font-size: 18px;
+}
+.btn_deletar:hover{
+    cursor: pointer;
+    color: rgb(182, 28, 28);
+}
+ 
+/*Section 1*/
+.section1 {
+    background-color: rgb(6, 6, 128);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+}
+
+.input_do_topo,.btn_increver-se, .input_increver-se, .input_pesquisar {
+    height: 25px;
+    border-radius: 10px;
+}
+
+ .input_do_topo{
+    width: 30vw;
+ }
+.input_increver-se {
+        width: 45vw;
+}
+@media (min-width:600px) and (max-width:800px) {
+  .input_increver-se {
+        width: 70vw;
+}
+.btn_increver-se{
+    margin-top: 3px;
+    margin-left: 10px;
+}
+}
+@media (max-width:600px)  {
+     
+  .btn_increver-se{
+      margin-top: 3px;
+      margin-left: 10px;
+  }
+  }
+@media (min-width: 200px) and (max-width:599px) {
+    .input_increver-se {
+          width: 87vw;
+  }
+   
+  }
+
+.input_do_topo, .input_increver-se, .input_pesquisar {
+    margin: 0 3px;
+    margin-left: 10px;
+    padding-left: 5px;
+    font-size: medium;
+}
+
+.input_increver-se:focus, .input_pesquisar:focus, .input_do_topo:focus {
+    outline: none;
+}
+
+.btn_increver-se {
+    font-size: 10px;
+    width: 70px;
+}
+
+.btn_increver-se:hover {
+    cursor: pointer;
+}
+
+
+@media (max-width:850px) {
+    .p_increver-se {
+        font-size: 10px;
+    }
+}
+
+@media (max-width:590px) {
+    .section1 {
+        display: none;
+    }
+}
+
+/*Fim*/
+
+
+/*Section 2*/
+.section2 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px;
+
+}
+
+.section2 div a {
+    color: rgb(54, 204, 204);
+    text-decoration: none;
+    padding: 5px;
+    font-size: 18px;
+}
+
+.section2 div button {
+    color: rgb(54, 204, 204);
+    background-color: transparent;
+    border: none;
+    font-size: 18px;
+}
+
+.section2 div a:hover, .s2_itens2 p:hover, .section2 div button:hover, .ctn_compra:hover, .btn_esquecer:hover, .btn_azul_claro:hover {
+    color: rgb(21, 250, 250);
+    cursor: pointer;
+}
+
+.div_logo {
+    width: 70px;
+    height: 70px;
+}
+
+.logotipo {
+    width: 100%;
+
+}
+
+.s2_itens2 {
+    display: flex;
+
+}
+
+.s2_itens2 div {
+    margin: 0px 4px;
+    text-align: center;
+}
+
+.s2_itens2 p {
+    font-size: 8px;
+    color: rgb(54, 204, 204);
+}
+
+.div_carrinho {
+    display: flex;
+    align-items: center;
+}
+
+
+
+.s2_itens_right {
+    display: flex; 
+}
+
+.s2_itens_right div {
+    margin: 0px 5px;
+}
+
+@media (max-width:350px) {
+    .s2_itens2, .s2_itens_right {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .s2_itens_right {
+        align-items: center;
+    }
+}
+
+/*Fim*/
+
+/*section 3*/
+.fechar_pesquisa {
+    font-size: 25px;
+    color: rgb(199, 16, 16);
+}
+
+.fechar_pesquisa:hover {
+    cursor: pointer;
+}
+
+.div_pesquisar2 {
+    display: flex;
+    justify-content: center;
+}
+
+.input_pesquisar {
+    width: 40vw;
+}
+
+.section3 {
+    display: none;
+    flex-direction: column;
+    align-items: flex-end;
+    margin-right: 10px;
+}
+
+/*fim*/
+
+
+/* section_filtro*/
+.section_filtro {
+    transition: all 0.5s;
+    display: none;
+    color: white;
+    margin: 5px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.section_filtro div {
+    margin: 0 5px;
+}
+
+.section_filtro div input {
+    margin-bottom: 5px;
+    margin-left: 15px;
+}
+
+#autores summary, #categorias summary {
+    color: rgb(203, 203, 204);
+}
+
+
+
+/*section livros*/
+
+
+.section_livros {
+    justify-items: center;
+ 
+    display: grid;
+    grid-template-columns: 20% 20% 20% 20% 20%;
+    margin: 5px 0;
+}
+
+@media (max-width:1000px) {
+    .section_livros {
+
+        grid-template-columns: 25% 25% 25% 25%;
+
+    }
+}
+
+@media (max-width:800px) {
+    .section_livros {
+
+        grid-template-columns: 32% 32% 32%;
+
+    }
+}
+
+@media (max-width:580px) {
+    .section_livros {
+
+        grid-template-columns: 50% 50%;
+
+    }
+}
+
+@media (max-width:380px) {
+    .section_livros {
+
+        grid-template-columns: auto;
+
+    }
+}
+
+.main_livro {
+    margin: 10px 0;
+}
+
+
+.div_capa_livro {
+
+    width: 160px;
+    height: 80px;
+    margin-bottom: 130px;
+}
+
+.div_capa_livro img {
+    width: 100%;
+
+}
+
+.artibutos_livro span {
+    display: flex;
+    flex-direction: column;
+    margin: 2px 0;
+    color: white;
+
+}
+
+.categoria_livro, .autor_livro {
+    font-size: 14px;
+}
+
+.div_btn_livro button {
+    background-color: transparent;
+    border: none;
+    color: rgb(32, 207, 207);
+    font-size: 22px;
+    margin: 0 3px;
+}
+
+.div_btn_livro button:hover {
+    color: rgb(21, 250, 250);
+    cursor: pointer;
+}
+
+/*Fim corpo*/
+
+/*Footer*/
+.div_mostrar_mais {
+    text-align: center;
+    margin: 5px 0px;
+}
+
+.div_mostrar_mais a {
+    color: rgb(32, 207, 207);
+    text-decoration: none;
+}
+
+.div_mostrar_mais a:hover {
+    color: rgb(26, 250, 250);
+}
+
+.rodape {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 20px 10px;
+}
+
+.rodape section summary {
+    font-size: 22px;
+}
+
+.rodape section a {
+    font-size: 21px;
+    margin: 7px 25px;
+}
+
+.fim_rodape {
+    display: flex;
+    color: white;
+    background-color: rgb(6, 6, 128);
+    justify-content: center;
+    height: 40px;
+    align-items: center;
+}
+
+@media (max-width:400px) {
+    .fim_rodape {
+        font-size: 12px;
+    }
+}
+
+/*Sobre nos*/
+.sobre_nos {
+    margin: 10px;
+}
+
+.sobre_nos h1 {
+    color: rgb(238, 238, 238);
+}
+
+.sobre_nos h2 {
+    margin: 0px 5px;
+    color: white;
+}
+
+.sobre_nos p {
+    margin: 0px 10px;
+    color: rgb(238, 237, 237);
+}
+
+/*fim sobre nós*/
+
+/*Section links encomenda*/
+.links_encomenda {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+
+}
+
+.links_encomenda div {
+    display: flex;
+    align-items: center;
+    padding: 0px 5px;
+    height: 40px;
+
+}
+
+.links_encomenda button {
+    background: transparent;
+    color: rgb(32, 207, 207);
+    border: none;
+}
+
+.links_encomenda button:hover {
+    cursor: pointer;
+    color: rgb(23, 235, 235);
+
+}
+
+
+/*Fim section links encomenda*/
+
+/*Article Itens do carrinho*/
+.itens_no_carrinho {
+ 
+   display: grid; 
+    grid-template-columns: 33.333333333% 33.333333333% 33.333333333%;
+    margin: 10px 0;
+
+}
+
+@media (min-width:601px) and (max-width:1290px) {
+    .itens_no_carrinho {
+        grid-template-columns: 50% 50%; 
+    }
+}
+
+@media (max-width:600px) {
+    .itens_no_carrinho {
+        grid-template-columns: auto;
+    }
+
+    .section_info_itens_no_carrinho1 span {
+
+        font-size: 5em;
+    }
+
+}
+
+.section_info_itens_no_carrinho1 {
+    margin: 10px 10px;
+    justify-content: center;
+    display: flex;
+}
+
+.section_info_itens_no_carrinho1 div {
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.section_info_itens_no_carrinho1 span {
+    color: rgb(211, 211, 211);
+    display: block;
+    font-size: 1em;
+}
+
+.btn_del_iten_carrinho {
+    background: transparent;
+    border: none;
+    color: rgba(138, 27, 27, 0.527);
+    font-size: 2em;
+}
+
+.btn_del_iten_carrinho:hover {
+    color: red;
+    cursor: pointer;
+}
+
+
+
+/*Fim*/
+
+/*Botao de subir e descer*/
+#btnTop {
+    position: fixed;
+    bottom: 100px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    background-color: #000000;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+.arrow{
+    border: solid white;
+    border-width: 0 7px 7px 0;
+    padding: 5px;
+    display: inline-block;
+}
+
+.up{
+    transform: rotate(125deg);
+    -webkit-transform: rotate(-135deg);
+}
+
+/*preco total e quantidade de produtos*/
+ 
+ .section_info{
+    
+  margin: 10px 10px;
+  
+   display: flex;
+    flex-direction: column;
+   
+ } 
+ .section_info span{
+    color: rgb(190, 182, 182);
+ }
+
+ /*fim*/
+
+ /*btns encomenda*/
+ .section_btns_encomenda{
+display: flex;
+flex-direction: column;
+align-items: center;
+ 
+ }
+ .section_btns_encomenda div{
+    margin: 5px 0px;
+ }
+ 
+ /*formulario criar conta*/
+ .fieldset_criar_conta{ 
+    border-radius: 10px;
+margin: 10px;
+ }
+  
+ .fieldset_criar_conta legend{
+    color: rgb(194, 194, 194);
+ }
+ .fieldset_criar_conta span{
+    font-size: 13px;
+    color: rgb(236, 236, 236);
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: 5px;
+ }
+ .fieldset_criar_conta div{
+  align-items: center; 
+ margin-bottom: 5px;
+ }
+ /*fim*/
+
+ /*Formulario registar-se*/
+ .btn_esquecer{ 
+     background-color: transparent; 
+    color:  rgb(32, 207, 207); 
+    border: none; 
+ 
+}
+ 
+@media (max-width:357px)  {
+    .btn_entrar{
+        margin-left: 10px;
+        margin-top: 3px;
+    }}
+ /*Fim*/
+
+ /*formulario checkout*/
+ 
+ .fieldset_criar_conta label{
+    color: white;
+    font-size: 13px;
+    display: block;
+    margin-left: 10px;
+ }
+ 
+ /*fim*/
+
+
+ /*formulariio endereço existente*/
+ .end_existente{
+    margin: 15px;
+ }
+ .end_existente span, .end_existente button { display: flex; flex-direction: column; justify-content: center;  }
+ .end_existente button { align-items: center;  } 
+ /*FIM*/
+
+ /*Inicio tabela de histórico de pedidos*/
+
+ .tbl_hist_pedidos{
+    text-align: center;
+    color: rgb(255, 255, 255);
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+margin: 10px;
+ }
+ .tbl_hist_pedidos tr:nth-child(even) {
+    background-color: #033450;
+  
+ }
+ .tbl_hist_pedidos td{
+    padding: 8px;
+ }
+ .section_tbl_hist_pedidos{
+   
+    display: flex;
+   justify-content: center;
+ }
+ .tr_first{
+    font-size: 20px;
+ }
+ .tr_cabecalho{
+    color: rgb(228, 228, 228);
+    font-size: 18px;
+ }
+ .tbl_hist_pedidos tbody{
+    color: rgb(204, 204, 204);
+ }
+ /*Fim tabela de histórico de pedidos*/
+
+
+ /*Inicio livro em ponto grande*/
+  
+ .section_livro_grande{
+    
+    position: fixed;
+    top: 0px;
+     
+    width: 100%;
+ 
+margin: 0px;
+align-items: center;
+}
+ 
+ .section_livro_grande button, .section_livro_grande span{
+    font-size: 1.5em;
+ }
+
+ .section_livro_grande div{
+   margin-right: 10px;
+ }
+ 
+/*Fim livro em ponto grande*/
+
+/*Inicio editar livro*/
+.btn_del_livro:hover{
+    color: red;
+}
+.btn_del_livro{
+    color: rgb(124, 4, 4);
+}
+/*Fim editar livro*/
+
+/*Inicio Textarea responsiva*/
+ .textarea_responsiva{
+width: 400px;
+height: 150px;
+
+ }
+ @media (max-width:500px) {
+    .textarea_responsiva{
+        width: 80%;
+        
+        
+         }
+}
+/*Fim Textarea responsiva*/
+
+/*Inicio Estatistica de usuarios*/
+#caret_up, #caret_down{
+     font-size: 20px;
+}
+#caret_up{
+    color: rgb(20, 192, 20);
+   
+}
+#caret_down{
+    color: rgb(116, 6, 6);
+}
+/*Fim Estatistica de usuarios*/
