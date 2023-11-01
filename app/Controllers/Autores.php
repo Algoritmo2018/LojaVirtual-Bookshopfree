@@ -1,25 +1,117 @@
 <?php
 
 class Autores extends Controller{
+    public function __construct()
+    { 
+        $this->autorModel = $this->model('Autor');
+    } 
+
+   
 
     public function cadastrar(){
         
         //Verifica si o formulario existe
          
+        //Verifica si o formulario existe
+        $formulario = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+        if(isset($formulario)):
+            //Dados vindo do formulario cadastrar
+            $dados =[ 
+                'nome' => trim ($formulario['nome']),
+                
+                'nome_erro' => ''
+            ];
+
+            //Validando os campos do formulario
+            //in_array()- verifica si no array existe campo vazio
+            if(in_array("", $formulario)):
+          
+
+                if(empty($formulario['nome'])):
+                    $dados['nome_erro'] = 'Preencha o campo nome';
+                endif;
+            else:
+                
+                if($this->autorModel->armazenar($dados)):
+                    Sessao::mensagem('autor', 'Autor cadastrado com sucesso');
+                    
+                else:
+                    die("Erro ao armazenar o autor no banco de dados");
+                endif;        
+            endif;
+        else:
+            $dados =[
+                'nome' => '', 
+                'nome_erro' => ''
+            ]; 
+        endif;
         
        
-    
+     
         $this->view('autores/cadastrar', $dados);
     }
   
-    public function editar(){
+    public function cadastrados(){
         
         //Verifica si o formulario existe
          
-        
+        $dados = [
+            'autores' => $this->autorModel->lerAutores()
+        ];
        
-    
+        $this->view('autores/cadastrados', $dados);
+    }
+    public function editar($id){
+        
+        //Verifica si o formulario existe
+        $formulario = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+        if(isset($formulario)):
+            //Dados vindo do formulario cadastrar
+            $dados =[
+                'id' => $id,
+                'nome' => trim ($formulario['nome']) 
+            ];
+
+            //Validando os campos do formulario
+            //in_array()- verifica si no array existe campo vazio
+            if(in_array("", $formulario)):
+                if(empty($formulario['nome'])):
+                    $dados['nome_erro'] = 'Digite o nome do autor que desejas atualizar';
+                endif;
+
+                
+            else:
+                
+               if($this->autorModel->atualizar($dados)):
+                    Sessao::mensagem('autor','O nome do autor foi atualizado com sucesso');
+                    Url::redirecionar('autores/cadastrados');
+                else:
+                    die("Erro ao atualizar o nome do autor no banco de dados");
+                endif;      
+            endif;
+        else:
+            
+            $autor = $this->autorModel->lerAutorPorId($id);
+ 
+            $dados =[
+                'id' => $autor->id_autor,
+                'nome' => $autor->nome,
+                'nome_erro' => ''
+            ]; 
+              var_dump($formulario);
+        endif;
+
+     
         $this->view('autores/editar', $dados);
+    }
+
+    public function deletar($id){
+        
+                if($this->autorModel->destruir($id)):
+                    Sessao::mensagem('autor', 'Autor deletado com sucesso');
+                    Url::redirecionar('autores/cadastrados');
+                endif;
+             
     }
   /*  
     public function __construct()

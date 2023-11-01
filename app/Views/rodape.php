@@ -25,9 +25,9 @@
          Categorias:
         </summary>
         <article>
-           <a href="<?=URL?>/categorias/cadastrar">Cadastrar</a>
+        <a href="<?=URL?>/categorias/cadastrar">Cadastrar</a>
           <br> 
-          <a href="<?=URL?>/categorias/editar">Editar</a>
+          <a href="<?=URL?>/categorias/cadastrados">cadastrados</a>
            <br> 
            <a href="">Deletar</a>
         </article></details>
@@ -42,7 +42,7 @@
         <article>
            <a href="<?=URL?>/autores/cadastrar">Cadastrar</a>
           <br> 
-          <a href="<?=URL?>/autores/editar">Editar</a>
+          <a href="<?=URL?>/autores/cadastrados">cadastrados</a>
            <br> 
            <a href="">Deletar</a>
         </article></details>

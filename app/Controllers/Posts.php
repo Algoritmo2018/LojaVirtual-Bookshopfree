@@ -1,6 +1,8 @@
 <?php
 
 class Posts extends Controller{
+  
+    
 
     public function cadastrar(){
         

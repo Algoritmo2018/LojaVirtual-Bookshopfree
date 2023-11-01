@@ -5,6 +5,9 @@ include './../app/configuracao.php';
 include './../app/autoload.php';
 
 ?>
+
+
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -16,12 +19,15 @@ include './../app/autoload.php';
     <link rel="stylesheet" href="<?=URL?>/public/fontawesome/css/all.css" >
 </head>
 <body>
+ 
+ 
+
+ 
 <?php
     
+ 
   
         include '../app/Views/topo.php';
-        include '../app/Helpers/Languages.php';
-      
         $rotas = new Rota();
         include '../app/Views/rodape.php';
         

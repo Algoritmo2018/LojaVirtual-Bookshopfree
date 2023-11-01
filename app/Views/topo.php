@@ -1,3 +1,6 @@
+ 
+
+
 <section class="section1">
       <p class="p_increver-se">
         Receba convites, sugestões de livros e novidades exclusivas!
@@ -43,43 +46,4 @@
     </div>
   <div class="div_pesquisar2"><input type="search" class="input_pesquisar" name="" id="" placeholder="Digite o titulo do livro:"> <button type="submit" class="btn_increver-se">Pesquisar</button></div></section>
 
-
-<section class="section_filtro" id="section_filtro">
-  <div>
-  <details id="categorias">
-    <summary>
-       Categorias:
-    </summary>
-    <article>
-
-      <input type="radio" name="categoria" id="categoria" value="s"  ><span>Autoajuda</span>
-      <br> 
-     <input type="radio" name="categoria" id="categoria" value="n" ><span>Contos</span> 
-     <br> 
-     <input type="radio" name="categoria" id="categoria" value="n" ><span>Filosófia</span> 
-     <br> 
-     <input type="radio" name="categoria" id="categoria" value="n" ><span>Negócios</spa> 
-     <br> 
-      <input type="radio" name="categoria" id="categoria" value="n" ><span>Ocultismo</span>
-      <br> 
-    </article></details>
-</div>
-<div>
-    <details id="autores">
-      <summary>
-Autores:
-      </summary>
-      <article>
-  
-        <input type="radio" name="autor" id="autor" value="s"  ><span>Augusto Curry</span>
-      <br>
-      <input type="radio" name="autor" id="autor" value="n" ><span>Napolean Hill</span> 
-      <br>
-      <input type="radio" name="autor" id="autor" value="n" ><span>Nicolau Maquiavel </span> 
-      <br> 
-      <input type="radio" name="autor" id="autor" value="n" ><span>Robert Kiyozaki</span>
-      <br>
-      </article></details>
-  </div>
-  <button class="btn_increver-se">Filtrar</button>
-  </section>
+ 

@@ -1,15 +1,24 @@
 <?php
 
 class Paginas extends Controller {
-    
+
+   
+  
+   
    
 
     public function index(){
-
-        if(Sessao::estarLogado()):
-            Url::redirecionar('posts');
-        endif;
-
+      //Para carregar todos os autores
+      $this->autorModel = $this->model('Autor');
+      $dados = [
+        'autores' => $this->autorModel->lerAutores()
+    ];
+    
+    //Para carregar todas as categorias
+    $this->categoriaModel = $this->model('Categoria');
+    $dados = [
+      'categorias' => $this->categoriaModel->lerCategorias()
+  ];
      
        $this->view('paginas/home', $dados);
     }

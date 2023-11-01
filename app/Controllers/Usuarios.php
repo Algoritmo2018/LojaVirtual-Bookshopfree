@@ -3,6 +3,8 @@
 class Usuarios extends Controller
 {
 
+    
+
 public function cadastrar(){
         
        $this->view('usuarios/cadastrar', $dados);
@@ -13,7 +15,7 @@ public function cadastrar(){
      }
     public function livros_favoritos(){
     
-       $this->view('usuarios/livros_favoritos', $dados);
+       $this->view('usuarios/livros_favoritos');
     }
     
     public function meu_perfil(){

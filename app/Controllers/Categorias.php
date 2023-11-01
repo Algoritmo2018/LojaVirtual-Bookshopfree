@@ -1,25 +1,117 @@
 <?php
 
 class Categorias extends Controller{
+    public function __construct()
+    { 
+        $this->categoriaModel = $this->model('Categoria');
+    } 
+
+   
 
     public function cadastrar(){
         
         //Verifica si o formulario existe
          
+        //Verifica si o formulario existe
+        $formulario = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+        if(isset($formulario)):
+            //Dados vindo do formulario cadastrar
+            $dados =[ 
+                'nome' => trim ($formulario['nome']),
+                
+                'nome_erro' => ''
+            ];
+
+            //Validando os campos do formulario
+            //in_array()- verifica si no array existe campo vazio
+            if(in_array("", $formulario)):
+          
+
+                if(empty($formulario['nome'])):
+                    $dados['nome_erro'] = 'Digite a categoria que deseja cadastrar';
+                endif;
+            else:
+                
+                if($this->categoriaModel->armazenar($dados)):
+                    Sessao::mensagem('categoria', 'categoria cadastrado com sucesso');
+                    $dados['nome']='';
+                else:
+                    die("Erro ao armazenar a categoria no banco de dados");
+                endif;        
+            endif;
+        else:
+            $dados =[
+                'nome' => '', 
+                'nome_erro' => ''
+            ]; 
+        endif;
         
        
-    
+     
         $this->view('categorias/cadastrar', $dados);
     }
   
-    public function editar(){
+    public function cadastrados(){
         
         //Verifica si o formulario existe
          
-        
+        $dados = [
+            'categorias' => $this->categoriaModel->lerCategorias()
+        ];
        
-    
+        $this->view('categorias/cadastrados', $dados);
+    }
+    public function editar($id){
+        
+        //Verifica si o formulario existe
+        $formulario = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+        if(isset($formulario)):
+            //Dados vindo do formulario cadastrar
+            $dados =[
+                'id' => $id,
+                'nome' => trim ($formulario['nome']) 
+            ];
+
+            //Validando os campos do formulario
+            //in_array()- verifica si no array existe campo vazio
+            if(in_array("", $formulario)):
+                if(empty($formulario['nome'])):
+                    $dados['nome_erro'] = 'Digite a categoria que deseja atualizar';
+                endif;
+
+                
+            else:
+                
+               if($this->categoriaModel->atualizar($dados)):
+                    Sessao::mensagem('categoria','Categoria foi atualizado com sucesso');
+                    Url::redirecionar('categorias/cadastrados');
+                else:
+                    die("Erro ao atualizar a categoria no banco de dados");
+                endif;      
+            endif;
+        else:
+            
+            $categoria = $this->categoriaModel->lerCategoriaPorId($id);
+ 
+            $dados =[
+                'id' => $categoria->id_categoria,
+                'nome' => $categoria->nome,
+                'nome_erro' => ''
+            ]; 
+              var_dump($formulario);
+        endif;
+
+     
         $this->view('categorias/editar', $dados);
+    }
+
+    public function deletar($id){
+        
+                if($this->categoriaModel->destruir($id)):
+                    Sessao::mensagem('categoria', 'Categoria deletada com sucesso');
+                    Url::redirecionar('categorias/cadastrados');
+                endif;
+             
     }
   /*  
     public function __construct()

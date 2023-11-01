@@ -1,3 +1,39 @@
+
+
+<!-- Inicio filtro -->
+ 
+<section class="section_filtro"   id="section_filtro">
+  <div>
+  <details id="categorias">
+    <summary>
+       Categorias:
+    </summary>
+    <article>
+
+    <?php foreach($dados['categorias'] as $categoria): ?>  
+                <input type="radio" name="categoria" id="categoria" value="s"  ><span><?= $categoria->nome ?></span>
+      <br>
+      <?php endforeach ?>
+      
+      </article></details>
+</div>
+<div>
+    <details id="autores">
+      <summary>
+Autores:
+      </summary>
+      <article>
+      <?php foreach($dados['autores'] as $autor): ?>  
+                <input type="radio" name="autor" id="autor" value="s"  ><span><?= $autor->nome ?></span>
+      <br>
+      <?php endforeach ?>
+      
+      </article></details>
+  </div>
+  <button class="btn_increver-se">Filtrar</button>
+  </section>
+   
+<!-- Fim filtro -->
 <!-- Corpo -->
 
 <!--inicio Livros carregados-->
