@@ -9,7 +9,7 @@ class Usuario {
     }
 
     public function checarEmail($email){
-        $this->db->query("SELECT email FROM usuarios WHERE email = :e");
+        $this->db->query("SELECT email FROM usuario WHERE email = :e");
         $this->db->bind(":e",$email);
         if($this->db->resultado()):
             return true;
@@ -19,12 +19,14 @@ class Usuario {
     }
 
     public function armazenar($dados){
-        $this->db->query("INSERT INTO usuarios(nome, email, senha, biografia) VALUES (:nome, :email, :senha, :biografia)");
+        $this->db->query("INSERT INTO usuario (titulo, nome, apelido, email, data_nascimento, senha) VALUES (:titulo, :nome, :apelido, :email, :data_nascimento, :senha)");
         
+        $this->db->bind("titulo",$dados['titulo']);
         $this->db->bind("nome",$dados['nome']);
+        $this->db->bind("apelido",$dados['apelido']);
         $this->db->bind("email",$dados['email']);
+        $this->db->bind("data_nascimento",$dados['data_nascimento']);
         $this->db->bind("senha",$dados['senha']);
-        $this->db->bind("biografia",$dados['biografia']);
 
         if($this->db->executa()):
             return true;
@@ -34,6 +36,7 @@ class Usuario {
 
     }
 
+    /*
     public function atualizar($dados){
         $this->db->query("UPDATE usuarios SET nome = :nome, email = :email, senha = :senha, biografia = :biografia  WHERE id = :id");
 
@@ -50,18 +53,18 @@ class Usuario {
         endif;
     }
 
-
+*/
 
     public function checarLogin($email, $senha){
-        $this->db->query("SELECT * FROM usuarios WHERE email = :e");
-        $this->db->bind(":e",$email);
+        $this->db->query("SELECT * FROM usuario WHERE email = :email");
+        $this->db->bind(":email",$email);
 
         if($this->db->resultado()):
             $resultado = $this->db->resultado();
             if(password_verify($senha, $resultado->senha)):
                 return $resultado;
             else:
-                return false;
+                return false; 
             endif;
         else: 
             return false;
@@ -69,7 +72,7 @@ class Usuario {
     }
 
     public function lerUsuarioPorId($id){
-        $this->db->query("SELECT * FROM usuarios WHERE id = :id");
+        $this->db->query("SELECT * FROM usuario WHERE id = :id");
         $this->db->bind("id", $id);
 
         return $this->db->resultado();

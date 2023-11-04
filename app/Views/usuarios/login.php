@@ -1,20 +1,33 @@
+   <!-- Msg de usuario cadastrado com sucesso -->
+   <div class="msg"><?=Sessao::mensagem('usuario')?></div>
+     <!-- Msg usuario ou senha invalida com sucesso -->
+     <div class="msg"><?=Sessao::mensagem('erro')?></div>
+
+   <form name="login" action="<?=URL?>/usuarios/login" method="post">
  <!-- formularios  registar-se -->
 <fieldset class="fieldset_criar_conta">
   <legend>Já estás registado?</legend>
   <div style="  margin-top: 5px;">
-    <label for="">E-mail:</label>
-    <input class="input_increver-se" type="text" name="" id="" placeholder="E-mail">
+  <div>  
+  <label for="">E-mail:</label>
+    <input class="input_increver-se" type="text" name="email" id="email" placeholder="E-mail" value="<?=$dados['email']?>">
+    <small class="erro"><?= $dados['email_erro']?></small> 
+    </div>
+    <div>
     <label for="" style="margin-top: 3px;">Palavra-passe:</label>
-    <input class="input_increver-se" type="text" name="" id="" placeholder="Palavra-passe">
-     <button class="btn_increver-se btn_entrar" type="submit">Entrar</button> 
-     <button class="btn_esquecer"    type="submit">Esqueceste da tua palavra-passe</button>
+    <input class="input_increver-se" type="password" name="senha" id="senha" placeholder="Senha" value="<?=$dados['senha']?>">
+    <small class="erro"> <?= $dados['senha_erro']?></small> 
+    </div> 
+    <button class="btn_increver-se btn_entrar ml" type="submit">Entrar</button> 
+     <button class="btn_esquecer"  >Esqueceste da tua palavra-passe</button>
     </div>
 
     <div style="  margin-top: 5px; margin-left: 2px;">
       <span>*Tambem podes entrar com a tua conta de facebook,</span>
-      <button class="btn_esquecer"   type="submit">Entrar com facebok</button>
+      <button class="btn_esquecer"   >Entrar com facebok</button>
       
     </div>
   
 </fieldset>
+  </form>
 <!-- Fim -->
