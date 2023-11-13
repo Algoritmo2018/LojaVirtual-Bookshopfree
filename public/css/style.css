@@ -708,6 +708,13 @@ height: 150px;
     display: block;
     margin-left: 10px;
 }
+
+.erro1{
+    background-color: rgb(107, 7, 7);
+    color: rgb(209, 208, 208);
+    display: block;
+    margin-left: 10px;
+}
 /*Fim erro*/
 
 /*Margin left 10px*/
@@ -730,3 +737,75 @@ height: 150px;
 }
 /*Fim mensagem de sucesso*/
 
+/*inicio section janela de confirmação*/
+
+
+.article_msg_conf{display: none;
+justify-content: center;}
+.section_confirmar{
+    background-color: #0707dd;
+    max-width: 350px;
+    color: rgb(241, 241, 241);
+    margin: 0 auto;
+    position: fixed;
+    border-radius: 10px;
+    padding: 10px;
+        }
+        .div_conf{
+            margin-bottom: 10px;
+            
+            border-bottom: 1px solid rgb(207, 203, 203);
+        }
+        .div_msg{
+            margin-bottom: 5px;
+        }
+        .div_btns_conf{
+            display: flex;
+            justify-content: flex-end;
+            
+        }
+        .div_btns_conf button{
+            margin-left: 3px;
+        }
+        .div_btns_conf button:focus{
+            cursor: pointer;
+        }
+
+        /*Fim section janela de confirmação*/
+
+        /*inicio section janela de confirmação*/
+
+
+.article_msg_universal{display: none;
+    justify-content: center;}
+    .section_confirmar1{
+        background-color: #0707dd;
+        max-width: 350px;
+        color: rgb(241, 241, 241);
+        margin: 0 auto;
+        position: fixed;
+        border-radius: 10px;
+        padding: 10px;
+
+            }
+            .div_conf1{
+                margin-bottom: 10px;
+                
+                border-bottom: 1px solid rgb(207, 203, 203);
+            }
+            .div_msg1{
+                margin-bottom: 5px;
+            }
+            .div_btns_conf1{
+                display: flex;
+                justify-content: flex-end;
+                
+            }
+            .div_btns_conf1 button{
+                margin-left: 3px;
+            }
+            .div_btns_conf1 button:focus{
+                cursor: pointer;
+            }
+    
+            /*Fim section janela de confirmação*/

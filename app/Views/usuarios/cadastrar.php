@@ -1,5 +1,6 @@
-
-
+<!-- Msg de usuario cadastrado com sucesso -->
+<div class="msg"><?=Sessao::mensagem('usuario')?></div>
+ 
   <!-- formularios criar conta-->
 <form name="cadastrar" action="<?=URL?>/usuarios/cadastrar" method="post">
 <fieldset class="fieldset_criar_conta">

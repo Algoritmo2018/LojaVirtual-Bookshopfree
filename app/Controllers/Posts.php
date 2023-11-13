@@ -2,8 +2,7 @@
 
 class Posts extends Controller{
   
-    
-
+   
     public function cadastrar(){
         
         //Verifica si o formulario existe

@@ -77,7 +77,7 @@ public function cadastrar(){
                 elseif ($formulario['senha'] != $formulario['confirmar_senha']) :
                     $dados['confirmar_senha_erro'] = 'As senhas são diferentes';
                 else :
-                $dados['senha'] = password_hash($formulario['senha'], PASSWORD_DEFAULT);  
+                /*$dados['senha'] = password_hash($formulario['senha'], PASSWORD_DEFAULT);*/  
 
                     if ($this->usuarioModel->armazenar($dados)) :
                         Sessao::mensagem('usuario', 'Usuario cadastrado com sucesso');
@@ -109,16 +109,14 @@ public function cadastrar(){
             ];
         endif;
 
-        var_dump($dados);
+        
 
        $this->view('usuarios/cadastrar', $dados);
     }
 
 
-    public function login(){
-    
-       
-    
+    public function login(){ 
+
          //Verifica si o formulario existe
          $formulario = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
          if (isset($formulario)) :
@@ -150,7 +148,7 @@ public function cadastrar(){
                      if($usuario):
                         $this->criarSessaoUsuario($usuario);
                      else :
-                         Sessao::mensagem('erro', 'Usuario ou senha invalidos', 'erro');
+                         Sessao::mensagem('erro1', 'Usuario ou senha invalidos', 'erro1');
                      endif;
    
                  endif;
@@ -190,13 +188,104 @@ public function cadastrar(){
 
         Url::redirecionar('usuarios/login');
     }
+
+  
+
     public function livros_favoritos(){
     
        $this->view('usuarios/livros_favoritos');
     }
     
-    public function meu_perfil(){
+    //Editar perfil do usuario
+    public function meu_perfil($id){
+           //Verifica si o formulario existe
+           $formulario = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+           if(isset($formulario)):
+               //Dados vindo do formulario cadastrar
+               $dados = [
+                'id' => $id,
+                'titulo' => trim($formulario['titulo']),
+                'nome' => trim($formulario['nome']),
+                'apelido' => trim($formulario['apelido']),
+                'email' => trim($formulario['email']),
+                'senha' => trim($formulario['senha']),
+                'confirmar_senha' => trim($formulario['confirmar_senha']),
+                'data_nascimento' => trim($formulario['data_nascimento']),
+                'titulo_erro' => '',
+                'nome_erro' => '',
+                'apelido_erro' => '',
+                'email_erro' => '',
+                'senha_erro' => '',
+                'confirmar_senha_erro' => '',
+                'data_nascimento_erro' => ''
+            ];
+   
+               //Validando os campos do formulario
+               //in_array()- verifica si no array existe campo vazio
+               if(in_array("", $formulario)):
+                if (empty($formulario['nome'])) :
+                    $dados['nome_erro'] = 'Preencha o campo nome';
+                endif;
+
+                if (empty($formulario['apelido'])) :
+                    $dados['apelido_erro'] = 'Digite o seu apelido';
+                endif;
+ 
+                if (empty($formulario['email'])) :
+                    $dados['email_erro'] = 'Preencha o campo email';
+                endif;
+
+               
+                if (empty($formulario['titulo'])) :
+                    $dados['titulo_erro'] = 'Selecione um titulo';
+                endif; 
+                if (empty($formulario['senha'])) :
+                    $dados['senha_erro'] = 'Preencha o campo senha';
+                endif;
+                if (empty($formulario['confirmar_senha'])) :
+                    $dados['confirmar_senha_erro'] = 'Preencha o campo confirmar senha';
+                endif;
+
+    if (empty($formulario['data_nascimento'])) :
+                    $dados['data_nascimento_erro'] = 'Preencha o campo data de nascimento';
+                endif;
+   
+                   
+               else:
+                   
+                  if($this->usuarioModel->atualizar($dados)):
+                       Sessao::mensagem('usuario','Os seus dados foram atualizados com sucesso');
+                       
+                   else:
+                       die("Erro ao atualizar os seus dados no banco de dados");
+                   endif;   
+                   echo 'Preparado para atualizar os dados do usuario';   
+               endif;
+           else:
+               
+               $usuario = $this->usuarioModel->lerUsuarioPorId($id);
     
+               $dados = [
+                'id' => $usuario->id_isuario,
+                'titulo' => $usuario->titulo,
+                'nome' => $usuario->nome,
+                'apelido' => $usuario->apelido,
+                'email' => $usuario->email,
+                'senha' => $usuario->senha,
+                'data_nascimento' => $usuario->data_nascimento,
+                'confirmar_senha' => '',
+                'titulo_erro' => '',
+                'nome_erro' => '',
+                'apelido_erro' => '',
+                'email_erro' => '',
+                'senha_erro' => '',
+                'confirmar_senha_erro' => '',
+                'data_nascimento_erro' => ''
+            ];
+                 
+           endif;
+   
+   
         $this->view('usuarios/meu_perfil', $dados);
      }
      public function meus_enderecos(){
@@ -207,190 +296,25 @@ public function cadastrar(){
      
         $this->view('usuarios/historico_pedidos', $dados);
      }
-  /*
+
+     //Eliminar conta
+     public function deletar($id){
+
+        $id = filter_var($id, FILTER_VALIDATE_INT);
+            $metodo = filter_input(INPUT_SERVER, 'REQUEST_METHOD', FILTER_SANITIZE_STRING);
  
-  public function cadastrar()
-    {
+            if($metodo == 'POST'):  
+                if($this->usuarioModel->destruir($id)):
+                  
+                    Sessao::mensagem('usuario', 'Conta deletada com suceso');
 
-        //Verifica si o formulario existe
-        $formulario = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
-        if (isset($formulario)) :
-            //Dados vindo do formulario cadastrar
-            $dados = [
-                'nome' => trim($formulario['nome']),
-                'email' => trim($formulario['email']),
-                'senha' => trim($formulario['senha']),
-                'confirmar_senha' => trim($formulario['confirmar_senha']),
-                'biografia' => trim($formulario['biografia'])
-            ];
-
-            //Validando os campos do formulario
-            //in_array()- verifica si no array existe campo vazio
-            if (in_array("", $formulario)) :
-                if (empty($formulario['nome'])) :
-                    $dados['nome_erro'] = 'Preencha o campo nome';
+                    Url::redirecionar('usuarios/cadastrar');
                 endif;
-
-                if (empty($formulario['email'])) :
-                    $dados['email_erro'] = 'Preencha o campo email';
-                endif;
-
-                if (empty($formulario['senha'])) :
-                    $dados['senha_erro'] = 'Preencha o campo senha';
-                endif;
-
-                if (empty($formulario['confirmar_senha'])) :
-                    $dados['confirmar_senha_erro'] = 'Preencha o campo confirmar senha';
-                endif;
-
-                if (empty($formulario['biografia'])) :
-                    $dados['biografia_erro'] = 'Preencha o campo biográfia';
-                endif;
-            else :
-
-                if (Checa::checarNome($formulario['nome'])) :
-                    $dados['nome_erro'] = 'O nome informado é invalido';
-
-                elseif (Checa::checarEmail($formulario['email'])) :
-                    $dados['email_erro'] = 'O e-mail informado é invalido';
-                elseif ($this->usuarioModel->checarEmail($formulario['email'])) :
-                    $dados['email_erro'] = 'O e-mail informado já está cadastrado';
-
-
-                elseif (strlen($formulario['senha']) < 6) :
-                    $dados['senha_erro'] = 'A senha deve ter no minimo 6 caracteres ';
-                elseif ($formulario['senha'] != $formulario['confirmar_senha']) :
-                    $dados['confirmar_senha_erro'] = 'As senhas são diferentes';
-                else :
-                    $dados['senha'] = password_hash($formulario['senha'], PASSWORD_DEFAULT);
-
-                    if ($this->usuarioModel->armazenar($dados)) :
-                        Sessao::mensagem('usuario', 'Cadastro realizado com sucesso');
-                        Url::redirecionar('usuarios/login');
-                    else :
-                        die("Erro ao armazenar usuario no banco de dados");
-                    endif;
-
-
-                endif;
-            endif;
-        else :
-            $dados = [
-                'nome' => '',
-                'email' => '',
-                'senha' => '',
-                'confirmar_senha' => '',
-                'biografia' => '',
-                'nome_erro' => '',
-                'email_erro' => '',
-                'senha_erro' => '',
-                'confirmar_senha_erro' => '',
-                'biografia_erro' => '',
-            ];
-        endif;
-
-        $this->view('usuarios/cadastrar', $dados);
+            else:
+                Sessao::mensagem('usuario', 'Você não têm autorização pra deletar essa conta','erro');
+                Url::redirecionar('usuarios/cadastrar');
+            endif; 
+             
     }
-
-    //Trata do perfil do utilizador
-    public function perfil($id)
-    {
-
-   
-            //Verifica si o formulario existe
-            $formulario = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
-            if (isset($formulario)) :
-                //Dados vindo do formulario cadastrar
-                $dados = [
-                    'id' => $_SESSION['usuario_id'],
-                    'nome' => trim($formulario['nome']),
-                    'email' => trim($formulario['email']),
-                    'senha' => trim($formulario['senha']),
-                    'biografia' => trim($formulario['biografia'])
-                ];
-
-                //Validando os campos do formulario
-                //in_array()- verifica si no array existe campo vazio
-                if (in_array("", $formulario)) :
-                    if (empty($formulario['nome'])) :
-                        $dados['nome_erro'] = 'Preencha o campo nome';
-                    endif;
-
-                    if (empty($formulario['email'])) :
-                        $dados['email_erro'] = 'Preencha o campo email';
-                    endif;
-
-                    if (empty($formulario['senha'])) :
-                        $dados['senha_erro'] = 'Preencha o campo senha';
-                    endif;
-
-                    if (empty($formulario['biografia'])) :
-                        $dados['biografia_erro'] = 'Preencha o campo biográfia';
-                    endif;
-                else :
-
-                    if (Checa::checarNome($formulario['nome'])) :
-                        $dados['nome_erro'] = 'O nome informado é invalido';
-
-                    elseif (Checa::checarEmail($formulario['email'])) :
-                        $dados['email_erro'] = 'O e-mail informado é invalido';
-
-
-
-                    elseif (strlen($formulario['senha']) < 6) :
-                        $dados['senha_erro'] = 'A senha deve ter no minimo 6 caracteres ';
-                    else :
-                        $dados['senha'] = password_hash($formulario['senha'], PASSWORD_DEFAULT);
-
-                        if ($this->usuarioModel->atualizar($dados)) :
-                            Sessao::mensagem('usuario', ' A Atualização dos Dados do utilizador ' . $dados['nome'] . ' foi realizada com sucesso');
-                            Url::redirecionar('posts');
-                        else :
-                            die("Erro ao armazenar usuario no banco de dados");
-                        endif;
-
-
-                    endif;
-                endif;
-            else :
-                $usuario = $this->usuarioModel->lerUsuarioPorId($id);
-                $dados = [
-                    'id' => '',
-                    'nome' => $usuario->nome,
-                    'email' => $usuario->email,
-                    'senha' => '',
-                    'biografia' => $usuario->biografia,
-                    'nome_erro' => '',
-                    'email_erro' => '',
-                    'senha_erro' => '',
-                    'biografia_erro' => ''
-                ];
-            endif;
-            $this->view('usuarios/perfil', $dados);
-       
-    }
-
   
-
-    //Cria uma sessão
-    private function criarSessaoUsuario($usuario)
-    {
-        $_SESSION['usuario_id'] = $usuario->id;
-        $_SESSION['usuario_nome'] = $usuario->nome;
-        $_SESSION['usuario_email'] = $usuario->email;
-
-        Url::redirecionar('posts');
-    }
-
-    //Destruir sessão
-    public function sair()
-    {
-        unset($_SESSION['usuario_id']);
-        unset($_SESSION['usuario_nome']);
-        unset($_SESSION['usuario_email']);
-
-        session_destroy();
-
-        Url::redirecionar('usuarios/login');
-    }*/
 }

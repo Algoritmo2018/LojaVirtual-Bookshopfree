@@ -2,7 +2,7 @@
 <section class="links_encomenda">
      <div><a href="<?= URL ?>/usuarios/livros_favoritos">Favoritos</a>
      </div>
-     <div><a href="<?= URL ?>/usuarios/meu_perfil">Perfil</a>
+     <div><a href="<?= URL ?>/usuarios/meu_perfil/<?= $_SESSION['usuario_id']; ?>">Perfil</a>
      </div>
      <div><a href="<?= URL ?>/usuarios/meus_enderecos">Endereços</a>
      </div>

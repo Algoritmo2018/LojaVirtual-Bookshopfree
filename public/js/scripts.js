@@ -41,4 +41,27 @@ function ocultar(){
 }
 
 ocultar() 
+
+/*Script para abrir Janela de notificação de encerrar conta*/
+
+function AbrirMsgConf(){
+ 
+    if(document.getElementById("article_msg_conf").style.display== "none"){
+        document.getElementById("article_msg_conf").style.display="flex"; 
+    }
+    else{
+        document.getElementById("article_msg_conf").style.display="none"; 
+
+    }
+}
+
+function FecharMsgConf(){
+ 
+    if(document.getElementById("article_msg_conf").style.display== "flex"){
+        document.getElementById("article_msg_conf").style.display="none"; 
+    }
+}
+/*fim  Script para abrir Janela de notificação de encerrar conta*/
+
+
  
