@@ -316,5 +316,56 @@ public function cadastrar(){
             endif; 
              
     }
+
+
+    public function solicitar_new_senha(){
+     
+        //Verifica si o formulario existe
+        $formulario = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+        if (isset($formulario)) :
+            //Dados vindo do formulario cadastrar
+            $dados = [ 
+                'email' => trim($formulario['email']), 
+                
+                'email_erro' => '' 
+            ]; 
+            //Validando os campos do formulario
+            //in_array()- verifica si no array existe campo vazio
+            if (in_array("", $formulario)) :
+               
+                if (empty($formulario['email'])) :
+                    $dados['email_erro'] = 'Preencha o campo email';
+                endif; 
+            else :
+                
+               if (Checa::checarEmail($formulario['email'])) :
+                    $dados['email_erro'] = 'O e-mail informado é invalido';
+             elseif ($this->usuarioModel->checarEmail($formulario['email'])) :
+                    
+ 
+  $dados['cod_confirmacao'] = random_int(100,10000);
+
+  if ($this->usuarioModel->armazenar_cod_conf($dados)) :
+     echo 'Codigo de confirmção cadastrado com sucesso';
+    Url::redirecionar('usuarios/cod_conf_senha');
+else :
+    die("Erro ao armazenar usuario no banco de dados");
+endif;
   
+                endif;
+            endif;
+        else :
+            $dados = [
+                'email' => '',
+                'email_erro' => '' 
+            ];
+        endif; 
+        var_dump($dados);
+        $this->view('usuarios/solicitar_new_senha', $dados);
+     }
+  
+     public function cod_conf_senha(){
+     
+        $this->view('usuarios/cod_conf_senha', $dados);
+     }
 }

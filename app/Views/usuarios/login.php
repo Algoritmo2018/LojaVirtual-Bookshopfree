@@ -19,7 +19,7 @@
     <small class="erro"> <?= $dados['senha_erro']?></small> 
     </div> 
     <button class="btn_increver-se btn_entrar ml" type="submit">Entrar</button> 
-     <button class="btn_esquecer"  >Esqueceste da tua palavra-passe</button>
+     <a href="<?=URL?>/usuarios/solicitar_new_senha" class="btn_esquecer"  >Esqueceste da tua palavra-passe</a>
     </div>
 
     <div style="  margin-top: 5px; margin-left: 2px;">

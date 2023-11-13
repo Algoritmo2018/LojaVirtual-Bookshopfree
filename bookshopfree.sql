@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 04-Nov-2023 às 03:32
+-- Tempo de geração: 13-Nov-2023 às 11:50
 -- Versão do servidor: 10.4.28-MariaDB
 -- versão do PHP: 8.2.4
 
@@ -20,6 +20,8 @@ SET time_zone = "+00:00";
 --
 -- Banco de dados: `bookshopfree`
 --
+CREATE DATABASE IF NOT EXISTS `bookshopfree` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE `bookshopfree`;
 
 -- --------------------------------------------------------
 
@@ -73,6 +75,27 @@ CREATE TABLE `checkout_instantaneo` (
   `id_check_inst` int(6) NOT NULL,
   `id_usuario` int(6) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `cod_de_confirmacao_de_senha`
+--
+
+CREATE TABLE `cod_de_confirmacao_de_senha` (
+  `id` int(6) NOT NULL,
+  `email` varchar(200) NOT NULL,
+  `cod_confirmacao` int(6) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Extraindo dados da tabela `cod_de_confirmacao_de_senha`
+--
+
+INSERT INTO `cod_de_confirmacao_de_senha` (`id`, `email`, `cod_confirmacao`) VALUES
+(1, 'lidiateresa@gmail.com', 5234),
+(2, 'luischilembomateus@gmail.com', 6372),
+(3, 'luischilembomateus@gmail.com', 6776);
 
 -- --------------------------------------------------------
 
@@ -193,7 +216,7 @@ CREATE TABLE `usuario` (
   `apelido` varchar(50) NOT NULL,
   `email` varchar(100) NOT NULL,
   `data_nascimento` date NOT NULL,
-  `senha` varchar(25) NOT NULL
+  `senha` varchar(50) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
@@ -201,11 +224,8 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`id_usuario`, `titulo`, `nome`, `apelido`, `email`, `data_nascimento`, `senha`) VALUES
-(1, 'Sr.', 'Luis', 'Mateus', 'luischilembomateus@gmail.com', '2023-11-26', '123456'),
-(2, 'Sra.', 'Lidia', 'Teresa', 'lidiateresa@gmail.com', '2024-02-15', '$2y$10$BSLhyxwwnuJ/cTuXNH'),
-(3, 'Sr.', 'Emiliano', 'Senzala', 'emiliano@gmail.com', '1995-06-23', '$2y$10$oMFOtULJKpHmI5Gakr'),
-(4, 'Sra.', 'Maria', 'Mateus', 'maria@gmail.com', '2023-11-12', '$2y$10$yYZGj278hQfV.hh7fw'),
-(5, 'Sr.', 'Antonio', 'Carter', 'antoniocarter@gmail.com', '2023-11-25', '123456');
+(7, 'Sra.', 'Lidia', 'Teresa', 'lidiateresa@gmail.com', '2023-11-18', '123456'),
+(6, 'Sr.', 'Luis', 'Mateus', 'luischilembomateus@gmail.com', '2023-11-07', '123456');
 
 --
 -- Índices para tabelas despejadas
@@ -228,6 +248,12 @@ ALTER TABLE `categoria`
 --
 ALTER TABLE `checkout_instantaneo`
   ADD PRIMARY KEY (`id_check_inst`);
+
+--
+-- Índices para tabela `cod_de_confirmacao_de_senha`
+--
+ALTER TABLE `cod_de_confirmacao_de_senha`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Índices para tabela `endereco_entrega`
@@ -306,6 +332,12 @@ ALTER TABLE `checkout_instantaneo`
   MODIFY `id_check_inst` int(6) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT de tabela `cod_de_confirmacao_de_senha`
+--
+ALTER TABLE `cod_de_confirmacao_de_senha`
+  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT de tabela `endereco_entrega`
 --
 ALTER TABLE `endereco_entrega`
@@ -357,7 +389,7 @@ ALTER TABLE `tipo_de_envio_x_usuario`
 -- AUTO_INCREMENT de tabela `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id_usuario` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_usuario` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -95,4 +95,21 @@ class Usuario {
             return false;
         endif;
     }
+
+
+    public function armazenar_cod_conf($dados){
+        $this->db->query("INSERT INTO cod_de_confirmacao_de_senha (email, cod_confirmacao) VALUES ( :email, :cod_confirmacao)");
+        
+ 
+        $this->db->bind("email",$dados['email']);
+        $this->db->bind("cod_confirmacao",$dados['cod_confirmacao']);
+  
+
+        if($this->db->executa()):
+            return true;
+        else:
+            return false;
+        endif;
+
+    }
 }
