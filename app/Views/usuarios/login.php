@@ -10,7 +10,7 @@
   <div style="margin-top: 5px;">
   <div>  
   <label ffor="email" >E-mail:</label>
-    <input class="input_increver-se" type="text" name="email" id="email" placeholder="E-mail" value="<?=$dados['email']?>">
+    <input class="input_increver-se" type="text" name="email" id="email" placeholder="E-mail" value="<?=$dados['email']?>" >
     <small class="erro"><?= $dados['email_erro']?></small> 
     </div>
     <div>

@@ -162,7 +162,7 @@ public function cadastrar(){
                  'senha_erro' => ''
              ];
          endif;
-       
+       var_dump($_SESSION);
          $this->view('usuarios/login', $dados);
      }
 
@@ -365,7 +365,162 @@ endif;
      }
   
      public function cod_conf_senha(){
-     
+      //Verifica si o formulario existe
+      $formulario = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+      if(isset($formulario)):
+          //Dados vindo do formulario cadastrar
+          $dados = [ 
+           'cod_confirmacao' => trim($formulario['cod_confirmacao']),
+           'cod_confirmacao_erro' => ''
+       ];
+
+          //Validando os campos do formulario
+          //in_array()- verifica si no array existe campo vazio
+          if(in_array("", $formulario)):
+           if (empty($formulario['cod_confirmacao'])) :
+               $dados['cod_confirmacao_erro'] = 'Digite o seu codigo de confirmação';
+           endif;     
+          else:
+              
+             
+            $dados_temp = $this->usuarioModel-> lerCodConfSenha($dados);
+            $dados_temp2 = [ 
+                'email' => $dados_temp->email 
+            ];
+            
+            $dados_usuario = $this->usuarioModel-> lerUsuarioEmail( $dados_temp2); 
+             
+
+            $dados_usuario2 = [
+                'id' => $dados_usuario->id_usuario, 
+                
+            ];
+            $this->criarSessaoUsuario2($dados_usuario2);
+         
+            
+            
+             
+              
+          endif;
+      else:
+          
+         
+
+          $dados = [ 
+           'cod_confirmacao' => '',
+           'cod_confirmacao_erro' => ''
+       ];
+            
+      endif;
+
         $this->view('usuarios/cod_conf_senha', $dados);
      }
+  //Cria uma sessão
+  private function criarSessaoUsuario2($dados_usuario2)
+  {      
+      $_SESSION['usuario_id_temp'] =  $dados_usuario2['id'];
+      Url::redirecionar2('usuarios/definir_nova_senha/',$_SESSION['usuario_id_temp']);
+  }
+  public function sair2()
+  {
+      unset($_SESSION['usuario_id_temp']);
+      
+
+      session_destroy();
+
+      Url::redirecionar('usuarios/login');
+  }
+
+
+  public function definir_nova_senha($id){
+    //Verifica si o formulario existe
+    $formulario = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+    if(isset($formulario)):
+        //Dados vindo do formulario cadastrar
+        $dados = [
+         'id' => $id,
+         'titulo' => trim($formulario['titulo']),
+         'nome' => trim($formulario['nome']),
+         'apelido' => trim($formulario['apelido']),
+         'email' => trim($formulario['email']),
+         'senha' => trim($formulario['senha']),
+         'confirmar_senha' => trim($formulario['confirmar_senha']),
+         'data_nascimento' => trim($formulario['data_nascimento']),
+         'titulo_erro' => '',
+         'nome_erro' => '',
+         'apelido_erro' => '',
+         'email_erro' => '',
+         'senha_erro' => '',
+         'confirmar_senha_erro' => '',
+         'data_nascimento_erro' => ''
+     ];
+
+        //Validando os campos do formulario
+        //in_array()- verifica si no array existe campo vazio
+        if(in_array("", $formulario)):
+         if (empty($formulario['nome'])) :
+             $dados['nome_erro'] = 'Preencha o campo nome';
+         endif;
+
+         if (empty($formulario['apelido'])) :
+             $dados['apelido_erro'] = 'Digite o seu apelido';
+         endif;
+
+         if (empty($formulario['email'])) :
+             $dados['email_erro'] = 'Preencha o campo email';
+         endif;
+
+        
+         if (empty($formulario['titulo'])) :
+             $dados['titulo_erro'] = 'Selecione um titulo';
+         endif; 
+         if (empty($formulario['senha'])) :
+             $dados['senha_erro'] = 'Preencha o campo senha';
+         endif;
+         if (empty($formulario['confirmar_senha'])) :
+             $dados['confirmar_senha_erro'] = 'Preencha o campo confirmar senha';
+         endif;
+
+if (empty($formulario['data_nascimento'])) :
+             $dados['data_nascimento_erro'] = 'Preencha o campo data de nascimento';
+         endif;
+
+            
+        else:
+            
+           if($this->usuarioModel->atualizar($dados)):
+                Sessao::mensagem('usuario','Os seus dados foram atualizados com sucesso');
+             $this->sair2();   
+            else:
+                die("Erro ao atualizar os seus dados no banco de dados");
+            endif; 
+        endif;
+    else:
+        
+        $usuario = $this->usuarioModel->lerUsuarioPorId($id);
+
+        $dados = [
+         'id' => $usuario->id_usuario,
+         'titulo' => $usuario->titulo,
+         'nome' => $usuario->nome,
+         'apelido' => $usuario->apelido,
+         'email' => $usuario->email,
+         'senha' => $usuario->senha,
+         'data_nascimento' => $usuario->data_nascimento,
+         'confirmar_senha' => '',
+         'titulo_erro' => '',
+         'nome_erro' => '',
+         'apelido_erro' => '',
+         'email_erro' => '',
+         'senha_erro' => '',
+         'confirmar_senha_erro' => '',
+         'data_nascimento_erro' => ''
+     ];
+          
+    endif;
+
+
+ $this->view('usuarios/definir_nova_senha', $dados);
+}
+      
 }

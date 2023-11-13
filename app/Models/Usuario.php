@@ -112,4 +112,17 @@ class Usuario {
         endif;
 
     }
+    public function lerCodConfSenha($dados){
+        $this->db->query("SELECT * FROM cod_de_confirmacao_de_senha WHERE cod_confirmacao = :cod_confirmacao");
+        $this->db->bind("cod_confirmacao", $dados['cod_confirmacao']);
+
+        return $this->db->resultado();
+    }
+
+    public function lerUsuarioEmail($dados_temp){
+        $this->db->query("SELECT * FROM usuario WHERE email = :email");
+        $this->db->bind(":email", $dados_temp['email']);
+
+        return $this->db->resultado();
+    }
 }
