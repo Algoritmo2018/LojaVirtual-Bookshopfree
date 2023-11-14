@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 13-Nov-2023 às 11:50
+-- Tempo de geração: 13-Nov-2023 às 15:01
 -- Versão do servidor: 10.4.28-MariaDB
 -- versão do PHP: 8.2.4
 
@@ -95,7 +95,10 @@ CREATE TABLE `cod_de_confirmacao_de_senha` (
 INSERT INTO `cod_de_confirmacao_de_senha` (`id`, `email`, `cod_confirmacao`) VALUES
 (1, 'lidiateresa@gmail.com', 5234),
 (2, 'luischilembomateus@gmail.com', 6372),
-(3, 'luischilembomateus@gmail.com', 6776);
+(3, 'luischilembomateus@gmail.com', 6776),
+(4, 'luischilembomateus@gmail.com', 374),
+(5, 'antoniocarter@gmail.com', 6055),
+(6, 'maria@gmail.com', 7779);
 
 -- --------------------------------------------------------
 
@@ -224,7 +227,9 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`id_usuario`, `titulo`, `nome`, `apelido`, `email`, `data_nascimento`, `senha`) VALUES
-(7, 'Sra.', 'Lidia', 'Teresa', 'lidiateresa@gmail.com', '2023-11-18', '123456'),
+(9, 'Sra.', 'Maria', 'Mateus', 'maria@gmail.com', '2023-11-25', '123456maria'),
+(8, 'Sr.', 'Antonio', 'Carter', 'antoniocarter@gmail.com', '2023-11-16', 'ludmila123'),
+(7, 'Sra.', 'Lidia', 'Teresa', 'lidiateresa@gmail.com', '2023-11-18', 'altacabeluda'),
 (6, 'Sr.', 'Luis', 'Mateus', 'luischilembomateus@gmail.com', '2023-11-07', '123456');
 
 --
@@ -335,7 +340,7 @@ ALTER TABLE `checkout_instantaneo`
 -- AUTO_INCREMENT de tabela `cod_de_confirmacao_de_senha`
 --
 ALTER TABLE `cod_de_confirmacao_de_senha`
-  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de tabela `endereco_entrega`
@@ -389,7 +394,7 @@ ALTER TABLE `tipo_de_envio_x_usuario`
 -- AUTO_INCREMENT de tabela `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id_usuario` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_usuario` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

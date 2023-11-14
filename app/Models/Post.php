@@ -23,11 +23,14 @@ class Post{
     }
 
     public function armazenar($dados){
-        $this->db->query("INSERT INTO posts(usuario_id, titulo, texto) VALUES (:usuario_id, :titulo, :texto)");
+        $this->db->query("INSERT INTO livro(url_capa, url_livro, titulo, preco, id_categoria, id_autor) VALUES (:capa, :pdf, :titulo, :preco, :categoria, :autor)");
         
-        $this->db->bind("usuario_id",$dados['usuario_id']);
+        $this->db->bind("capa",$dados['capa']);
+        $this->db->bind("pdf",$dados['pdf']);
         $this->db->bind("titulo",$dados['titulo']);
-        $this->db->bind("texto",$dados['texto']);
+        $this->db->bind("preco",$dados['preco']);
+        $this->db->bind("categoria",$dados['categoria']);
+        $this->db->bind("autor",$dados['autor']);
 
         if($this->db->executa()):
             return true;
@@ -52,12 +55,7 @@ class Post{
     }
 
 
-    public function lerPostPorId($id){
-        $this->db->query("SELECT * FROM posts WHERE id = :id");
-        $this->db->bind("id", $id);
-
-        return $this->db->resultado();
-    }
+     
 
     public function destruir($id){
         $this->db->query("DELETE  FROM  posts WHERE id = :id");

@@ -22,11 +22,7 @@
      <a href="<?=URL?>/usuarios/solicitar_new_senha" class="btn_esquecer"  >Esqueceste da tua palavra-passe</a>
     </div>
 
-    <div style="  margin-top: 5px; margin-left: 2px;">
-      <span>*Tambem podes entrar com a tua conta de facebook,</span>
-      <button class="btn_esquecer">Entrar com facebok</button>
-      
-    </div>
+     
   
 </fieldset>
   </form>
