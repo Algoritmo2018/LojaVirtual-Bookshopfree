@@ -98,4 +98,20 @@ class Upload
 
         endif;
     }
+
+     public function apagarcapa($arquivo) {
+
+        if(file_exists('../public/uploads/capa/'.$arquivo)):
+            unlink('../public/uploads/capa/'.$arquivo);
+        endif;
+
+    }
+
+    
+     public function apagarpdf($arquivo) {
+
+        if(file_exists('../public/uploads/Livros_pdf/'.$arquivo)):
+            unlink('../public/uploads/Livros_pdf/'.$arquivo);
+        endif;
+    }
 }
