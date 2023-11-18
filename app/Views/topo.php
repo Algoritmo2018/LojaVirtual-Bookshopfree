@@ -45,8 +45,10 @@
     </section>
     <section id="section3" class="section3"><div class="div_fechar_menu_pesquisar"><p class="fechar_pesquisa" onclick="FecharMenuPesquisar()">X</p>
     </div>
-  <div class="div_pesquisar2"><input type="search" class="input_pesquisar" name="" id="" placeholder="Digite o titulo do livro:"> <button type="submit" class="btn_increver-se">Pesquisar</button></div></section>
-  
+    
+            <form name="pesquisar" action="<?=URL?>/posts/pesquisa" method="post">
+  <div class="div_pesquisar2"><input type="search" class="input_pesquisar" name="titulo" id="" placeholder="Digite o titulo do livro:"> <button type="submit" class="btn_increver-se">Pesquisar</button></div></section>
+  </form>
   <article class="article_msg_conf" id="article_msg_conf"><section class="section_confirmar"><div class="div_conf">Confirmação:</div> <div class="div_msg">Clique em confirmar para encerrar a conta. </div> <div class="div_btns_conf"><form name="encerrar_conta" action="<?=URL?>/usuarios/sair" method="post"><button class="btn_increver-se" type="submit">Confirmar</button></form> <button class="btn_increver-se" onclick="FecharMsgConf()">Cancelar</button></div></section></article>
 
  

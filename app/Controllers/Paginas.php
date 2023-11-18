@@ -18,10 +18,7 @@ class Paginas extends Controller {
       //Para caregar todos os livros
       
 
-      //Para carregar todos os autores
-      $this->autorModel = $this->model('Autor');
-       //Para carregar todas as categorias
-    $this->categoriaModel = $this->model('Categoria');
+     
    
       $dados = [
         'autores' => $this->autorModel->lerAutores(), 

@@ -327,6 +327,18 @@ endif;
         
         
     }
+
+    public function pesquisa(){
+        $formulario = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+
+        $dados = [
+           
+           'livros' => $this->postModel->pesquisaLivro(trim($formulario['titulo'])), 
+           'autores' => $this->autorModel->lerAutores(), 
+           'categorias' => $this->categoriaModel->lerCategorias()
+      ]; 
+         $this->view('posts/pesquisa', $dados);
+      }
    
   /*  
     public function __construct()

@@ -24,6 +24,23 @@ class Post{
           ORDER BY livro.id_livro DESC ");
         return $this->db->resultados(); 
     }
+    public function pesquisaLivro($titulo){
+        $this->db->query("SELECT *,
+        livro.id_livro as livroId,
+        categoria.id_categoria as categoriaId,
+        categoria.nome as categoriaNome,
+        autor.id_autor as autorId,
+        autor.nome as autorNome
+         FROM livro
+         INNER JOIN categoria ON
+         livro.id_categoria = categoria.id_categoria
+          INNER JOIN autor ON
+          livro.id_autor = autor.id_autor 
+          WHERE livro.titulo LIKE '%$titulo%' 
+          ORDER BY livro.id_livro DESC ");
+       
+        return $this->db->resultados(); 
+    }
 
     public function armazenar($dados){
         $this->db->query("INSERT INTO livro(url_capa, url_livro, titulo, preco, id_categoria, id_autor) VALUES (:capa, :pdf, :titulo, :preco, :categoria, :autor)");
