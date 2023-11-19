@@ -42,6 +42,25 @@ class Post{
         return $this->db->resultados(); 
     }
 
+    public function PesquisaPorFiltro($categoria=null,$autor=null){
+        $this->db->query("SELECT *,
+        livro.id_livro as livroId,
+        categoria.id_categoria as categoriaId,
+        categoria.nome as categoriaNome,
+        autor.id_autor as autorId,
+        autor.nome as autorNome
+         FROM livro
+         INNER JOIN categoria ON
+         livro.id_categoria = categoria.id_categoria
+          INNER JOIN autor ON
+          livro.id_autor = autor.id_autor 
+          WHERE categoria.nome = :categoria or autor.nome = :autor 
+          ORDER BY livro.id_livro DESC ");
+        $this->db->bind("categoria", $categoria);
+        $this->db->bind("autor", $autor);
+        return $this->db->resultados(); 
+    }
+
     public function armazenar($dados){
         $this->db->query("INSERT INTO livro(url_capa, url_livro, titulo, preco, id_categoria, id_autor) VALUES (:capa, :pdf, :titulo, :preco, :categoria, :autor)");
         

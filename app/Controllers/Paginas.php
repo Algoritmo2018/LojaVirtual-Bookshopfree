@@ -28,7 +28,7 @@ class Paginas extends Controller {
     
    
 
-  var_dump($dados['livros']);
+  
      
        $this->view('paginas/home', $dados);
     }

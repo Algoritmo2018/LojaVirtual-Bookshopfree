@@ -4,6 +4,8 @@
   <!-- Fim -->
 <!-- Inicio filtro -->
 
+<form name="filtro" action="<?=URL?>/posts/PesquisaPorFiltro" method="post" >
+
 <section class="section_filtro" id="section_filtro">
     <div>
         <details id="categorias">
@@ -13,7 +15,7 @@
             <article>
 
                 <?php foreach($dados['categorias'] as $categoria): ?>
-                <input type="radio" name="categoria" id="categoria" value="s"><span><?= $categoria->nome ?></span>
+                <input type="radio" name="categoria" id="categoria" value="<?= $categoria->nome ?>"><span><?= $categoria->nome ?></span>
                 <br>
                 <?php endforeach ?>
 
@@ -27,16 +29,16 @@
             </summary>
             <article>
                 <?php foreach($dados['autores'] as $autor): ?>
-                <input type="radio" name="autor" id="autor" value="s"><span><?= $autor->nome ?></span>
+                <input type="radio" name="autor" id="autor" value="<?= $autor->nome ?>"><span><?= $autor->nome ?></span>
                 <br>
                 <?php endforeach ?>
 
             </article>
         </details>
     </div>
-    <button class="btn_increver-se">Filtrar</button>
+    <button class="btn_increver-se" type="submit">Filtrar</button>
 </section>
-
+                </form>
 <!-- Fim filtro -->
 <!-- Corpo -->
 
