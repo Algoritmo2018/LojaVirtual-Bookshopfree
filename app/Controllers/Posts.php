@@ -338,8 +338,10 @@ endif;
            'autores' => $this->autorModel->lerAutores(), 
            'categorias' => $this->categoriaModel->lerCategorias()
       ]; 
-      Sessao::mensagem('livro', 'Resultado da pesquisa');
-         $this->view('posts/pesquisa', $dados);
+     
+       Sessao::mensagem('livro', 'Resultado da pesquisa');
+      
+      $this->view('posts/pesquisa', $dados);
       }
 
       public function PesquisaPorFiltro(){

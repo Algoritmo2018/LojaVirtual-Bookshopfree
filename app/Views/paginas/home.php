@@ -47,7 +47,7 @@
 <section class="section_livros">
     <?php foreach($dados['livros'] as $livro): ?>
     <article class="main_livro article">
-        <div class="div_capa_livro div-imagem"><img src="<?= URL ?>/public/uploads/capa/<?= $livro->url_capa ?>" alt="">
+        <div class="div_capa_livro"><img src="<?= URL ?>/public/uploads/capa/<?= $livro->url_capa ?>" alt="">
         </div>
         <div class="artibutos_livro div-spans">
             <span class="nome_livro"><?= $livro->titulo ?></span>
