@@ -58,4 +58,14 @@ $this->db->bind("nome", $dados['nome']);
             return false;
         endif;
     }
+    
+    public function checarCategoria($dados){
+        $this->db->query("SELECT * FROM categoria WHERE nome = :nome ");
+        $this->db->bind("nome",$dados['nome']);
+        if($this->db->resultado()):
+            return true;
+        else: 
+            return false;
+        endif;
+    }
 }

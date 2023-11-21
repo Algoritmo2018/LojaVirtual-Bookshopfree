@@ -819,3 +819,11 @@ justify-content: center;}
             }
     
             /*Fim section janela de confirmação*/
+
+
+            /*cor de favorito*/
+            .fav{
+                color: rgb(122, 51, 79);
+            }
+
+            /*fim de cor favorita*/

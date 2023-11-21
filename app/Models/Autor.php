@@ -45,6 +45,15 @@ $this->db->bind("nome", $dados['nome']);
 
         return $this->db->resultado();
     }
+    public function checarAutor($dados){
+        $this->db->query("SELECT * FROM autor WHERE nome = :nome ");
+        $this->db->bind("nome",$dados['nome']);
+        if($this->db->resultado()):
+            return true;
+        else: 
+            return false;
+        endif;
+    }
 
     public function atualizar($dados){
         $this->db->query("UPDATE autor SET nome = :nome WHERE id_autor = :id");

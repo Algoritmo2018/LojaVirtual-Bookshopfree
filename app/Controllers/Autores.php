@@ -31,13 +31,17 @@ class Autores extends Controller{
                     $dados['nome_erro'] = 'Preencha o campo nome';
                 endif;
             else:
+                if($this->autorModel->checarAutor($dados)):
+                    Sessao::mensagem('autor', 'Este autor já está cadastrado no banco de dados');
                 
+                else:
                 if($this->autorModel->armazenar($dados)):
                     Sessao::mensagem('autor', 'Autor cadastrado com sucesso');
                     
                 else:
                     die("Erro ao armazenar o autor no banco de dados");
                 endif;        
+            endif;
             endif;
         else:
             $dados =[

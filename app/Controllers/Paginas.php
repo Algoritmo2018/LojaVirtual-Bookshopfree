@@ -9,7 +9,7 @@ class Paginas extends Controller {
         $this->autorModel = $this->model('Autor'); 
         $this->categoriaModel = $this->model('Categoria');
         $this->postModel = $this->model('Post');
-
+        $this->usuarioModel = $this->model('Usuario');
     }
    
    
@@ -23,12 +23,10 @@ class Paginas extends Controller {
       $dados = [
         'autores' => $this->autorModel->lerAutores(), 
          'livros' => $this->postModel->lerLivros(),
+         'livros_favoritos' => $this->usuarioModel->lerLivrosFavoritos($_SESSION['usuario_id']),
          'categorias' => $this->categoriaModel->lerCategorias()
     ];
     
-   
-
-  
      
        $this->view('paginas/home', $dados);
     }

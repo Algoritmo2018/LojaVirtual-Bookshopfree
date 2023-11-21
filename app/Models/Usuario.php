@@ -128,12 +128,12 @@ class Usuario {
 
 
     public function AdicionaraosFavoritos($dados){
-        $this->db->query("INSERT INTO livros_favoritos (id_usuario, id_livro) VALUES ( :id_usuario, :id_livro)");
+        $this->db->query("INSERT INTO livros_favoritos (id_usuario, id_livro, cor) VALUES ( :id_usuario, :id_livro, :cor)");
         
  
         $this->db->bind("id_usuario",$dados['id_usuario']);
         $this->db->bind("id_livro",$dados['id_livro']);
-  
+        $this->db->bind("cor",$dados['cor']);
 
         if($this->db->executa()):
             return true;
@@ -174,8 +174,21 @@ class Usuario {
         return $this->db->resultados(); 
     } 
 
+    
+
     public function destruirLivroFavoritos($id){
         $this->db->query("DELETE  FROM  livros_favoritos WHERE id_livros_favoritos = :id");
+        $this->db->bind("id", $id);
+
+        if ($this->db->executa()):
+            return true;
+        else:
+            return false;
+        endif;
+    }
+
+    public function destruirLivroFavoritos2($id){
+        $this->db->query("DELETE  FROM  livros_favoritos WHERE id_livro = :id");
         $this->db->bind("id", $id);
 
         if ($this->db->executa()):

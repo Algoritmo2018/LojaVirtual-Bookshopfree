@@ -524,11 +524,19 @@ if (empty($formulario['data_nascimento'])) :
     $formulario = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
     $dados = [
         'id_livro' => $id,
-        'id_usuario' => trim($formulario['id_usuario']) 
+        'id_usuario' => trim($formulario['id_usuario']),
+        'cor' => "color: rgb(161, 83, 114);"
     ];
     if($this->usuarioModel->checarListaDosFavoritos($dados)):
 
-        Sessao::mensagem('livro','Este Livro já pertence a lista dos livros favoritos');
+        if($this->usuarioModel->destruirLivroFavoritos2($dados['id_livro'])):
+                 
+            Sessao::mensagem('livro', 'Livro deletado da lista dos favoritos');
+        else:
+            Sessao::mensagem('livro', 'Erro ao deletar Livro da lista dos favoritos');
+            
+        endif;
+         
         Url::redirecionar('paginas/index');
     else:
     if($this->usuarioModel-> AdicionaraosFavoritos($dados)):
@@ -538,9 +546,9 @@ if (empty($formulario['data_nascimento'])) :
         die("Erro ao adicionar livro a lista dos favoritos no banco de dados");
         Url::redirecionar('paginas/index');
     endif; 
-    var_dump($dados);
+     
     endif;
-
+     
  
 }
 

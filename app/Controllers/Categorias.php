@@ -32,12 +32,16 @@ class Categorias extends Controller{
                 endif;
             else:
                 
+                if($this->categoriaModel->checarCategoria($dados)):
+                    Sessao::mensagem('categoria', 'Está categoria já si encontra cadastrada no banco de dados');
+                else:
                 if($this->categoriaModel->armazenar($dados)):
                     Sessao::mensagem('categoria', 'categoria cadastrado com sucesso');
                     $dados['nome']='';
                 else:
                     die("Erro ao armazenar a categoria no banco de dados");
-                endif;        
+                endif;
+            endif;        
             endif;
         else:
             $dados =[
