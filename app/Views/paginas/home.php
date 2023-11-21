@@ -64,7 +64,9 @@
             endif;
         endforeach
             ?>" type="submit"><i class="fa-solid fa-heart"></i></button></form>
-            <button><i class="fa-solid fa-cart-plus"></i></button>
+             <form name="cadastrar" action="<?=URL?>/carrinhos/resumo/" method="post">
+             <input type="hidden" name="id_livro" value="<?= $livro->id_livro ?>">
+            <button type="submit"><i class="fa-solid fa-cart-plus"></i></button></form>
             <form name="editar" action="<?=URL?>/posts/editar/<?= $livro->id_livro ?>" method="post">
                 <button><i class="fa-solid fa-pen-to-square"></i></button>
             </form>
