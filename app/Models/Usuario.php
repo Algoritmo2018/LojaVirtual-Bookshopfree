@@ -125,4 +125,63 @@ class Usuario {
 
         return $this->db->resultado();
     }
+
+
+    public function AdicionaraosFavoritos($dados){
+        $this->db->query("INSERT INTO livros_favoritos (id_usuario, id_livro) VALUES ( :id_usuario, :id_livro)");
+        
+ 
+        $this->db->bind("id_usuario",$dados['id_usuario']);
+        $this->db->bind("id_livro",$dados['id_livro']);
+  
+
+        if($this->db->executa()):
+            return true;
+        else:
+            return false;
+        endif;
+
+    }
+    public function checarListaDosFavoritos($dados){
+        $this->db->query("SELECT * FROM livros_favoritos WHERE id_usuario = :id_usuario and id_livro = :id_livro");
+        $this->db->bind("id_usuario",$dados['id_usuario']);
+        $this->db->bind("id_livro",$dados['id_livro']);
+        if($this->db->resultado()):
+            return true;
+        else: 
+            return false;
+        endif;
+    }
+
+     //INNER JOIN -permite usar o operador de comparação para comparar  valores  de colun provinientes de tabelas associadaas
+     public function lerLivrosFavoritos($id_usuario){
+        $this->db->query("SELECT *,
+        livro.id_livro as livroId,
+        categoria.id_categoria as categoriaId,
+        categoria.nome as categoriaNome,
+        autor.id_autor as autorId,
+        autor.nome as autorNome
+         FROM livros_favoritos
+         INNER JOIN livro ON
+         livros_favoritos.id_livro = livro.id_livro
+         INNER JOIN categoria ON
+         livro.id_categoria = categoria.id_categoria
+          INNER JOIN autor ON
+          livro.id_autor = autor.id_autor 
+          WHERE  livros_favoritos.id_usuario = :id_usuario  
+          ORDER BY livros_favoritos.id_livro DESC ");
+            $this->db->bind("id_usuario",$id_usuario);
+        return $this->db->resultados(); 
+    } 
+
+    public function destruirLivroFavoritos($id){
+        $this->db->query("DELETE  FROM  livros_favoritos WHERE id_livros_favoritos = :id");
+        $this->db->bind("id", $id);
+
+        if ($this->db->executa()):
+            return true;
+        else:
+            return false;
+        endif;
+    }
 }

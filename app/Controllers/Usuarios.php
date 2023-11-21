@@ -191,10 +191,7 @@ public function cadastrar(){
 
   
 
-    public function livros_favoritos(){
-    
-       $this->view('usuarios/livros_favoritos');
-    }
+   
     
     //Editar perfil do usuario
     public function meu_perfil($id){
@@ -522,5 +519,58 @@ if (empty($formulario['data_nascimento'])) :
 
  $this->view('usuarios/definir_nova_senha', $dados);
 }
-      
+      public function AdicionaraosFavoritos($id){
+    //Verifica si o formulario existe
+    $formulario = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+    $dados = [
+        'id_livro' => $id,
+        'id_usuario' => trim($formulario['id_usuario']) 
+    ];
+    if($this->usuarioModel->checarListaDosFavoritos($dados)):
+
+        Sessao::mensagem('livro','Este Livro já pertence a lista dos livros favoritos');
+        Url::redirecionar('paginas/index');
+    else:
+    if($this->usuarioModel-> AdicionaraosFavoritos($dados)):
+        Sessao::mensagem('livro','Livro adicionado a lista dos favoritos');
+        Url::redirecionar('paginas/index');
+    else:
+        die("Erro ao adicionar livro a lista dos favoritos no banco de dados");
+        Url::redirecionar('paginas/index');
+    endif; 
+    var_dump($dados);
+    endif;
+
+ 
 }
+
+public function livros_favoritos(){
+   
+
+    $dados = [
+        
+         'livros_favoritos' => $this->usuarioModel-> lerLivrosFavoritos($_SESSION['usuario_id'])
+        
+    ];
+    
+   
+    $this->view('usuarios/livros_favoritos', $dados);
+ }
+
+ public function destruirLivroFavoritos($id){
+    $formulario = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+    
+     
+            if($this->usuarioModel->destruirLivroFavoritos($id)):
+                 
+                Sessao::mensagem('livro', 'Livro deletado da lista dos favoritos');
+            else:
+                Sessao::mensagem('livro', 'Erro ao deletar Livro da lista dos favoritos');
+                
+            endif;
+    Url::redirecionar('usuarios/livros_favoritos');
+    
+}
+}
+
+

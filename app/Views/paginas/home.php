@@ -55,7 +55,8 @@
             <span class="autor_livro"><?= $livro->autorNome ?></span>
             <span class="preco_livro">kz <?= $livro->preco ?></span>
         </div>
-        <div class="div_btn_livro div-botao"><button><i class="fa-solid fa-heart"></i></button>
+        <div class="div_btn_livro div-botao">
+            <form name="editar" action="<?=URL?>/usuarios/AdicionaraosFavoritos/<?= $livro->id_livro ?>" method="post"><input type="hidden" name="id_usuario" value="<?= $_SESSION['usuario_id']; ?>"><button type="submit"><i class="fa-solid fa-heart"></i></button></form>
             <button><i class="fa-solid fa-cart-plus"></i></button>
             <form name="editar" action="<?=URL?>/posts/editar/<?= $livro->id_livro ?>" method="post">
                 <button><i class="fa-solid fa-pen-to-square"></i></button>
