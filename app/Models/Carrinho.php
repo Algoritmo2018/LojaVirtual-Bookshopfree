@@ -44,6 +44,39 @@ $this->db->bind("id_livro", $dados['id_livro']);
             $this->db->bind("id_usuario",$id_usuario);
         return $this->db->resultados(); 
     } 
+
+    public function QTCarrinho($id_usuario){
+        $this->db->query("SELECT count(*) 
+         FROM carrinho
+         
+          WHERE  carrinho.id_usuario = :id_usuario  
+          ");
+            $this->db->bind("id_usuario",$id_usuario);
+        return $this->db->resultados(); 
+    } 
+
+    
+     //INNER JOIN -permite usar o operador de comparação para comparar  valores  de colun provinientes de tabelas associadaas
+     public function PTCarrinho($id_usuario){
+        $this->db->query("SELECT SUM(livro.preco),
+        livro.id_livro as livroId,
+        categoria.id_categoria as categoriaId,
+        categoria.nome as categoriaNome,
+        autor.id_autor as autorId,
+        autor.nome as autorNome
+         FROM carrinho
+         INNER JOIN livro ON
+         carrinho.id_livro = livro.id_livro
+         INNER JOIN categoria ON
+         livro.id_categoria = categoria.id_categoria
+          INNER JOIN autor ON
+          livro.id_autor = autor.id_autor 
+          WHERE  carrinho.id_usuario = :id_usuario  
+            ");
+            $this->db->bind("id_usuario",$id_usuario);
+        return $this->db->resultados(); 
+    } 
+   
  
     public function destruirLivroCarrinho($id){
         $this->db->query("DELETE  FROM carrinho WHERE id_carrinho = :id");

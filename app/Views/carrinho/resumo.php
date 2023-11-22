@@ -8,8 +8,8 @@
 
  <!-- preco total e quantidade de produtos -->
 <section class="section_info">
-  <span>O seu carrinho tens x livros</span>
-  <span>Preço total:  <?php       ?> AKZ</span>
+  <span>O seu carrinho tens <?php echo $dados['QTI'][0]->{'count(*)'}; ?> livros</span>
+  <span>Preço total: <?php echo $dados['PTI'][0]->{'SUM(livro.preco)'}; ?>  AKZ</span>
   
 </section>
 <!-- Fim -->

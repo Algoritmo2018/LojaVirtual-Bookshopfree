@@ -32,11 +32,13 @@ Url::redirecionar('paginas/index');
         endif;   
     else:
         $dados =[ 
-            'itensCarrinho' => $this->carrinhoModel->lerItensCarrinho($_SESSION['usuario_id'])
+            'itensCarrinho' => $this->carrinhoModel->lerItensCarrinho($_SESSION['usuario_id']),
+            'QTI' =>$this->carrinhoModel->QTCarrinho($_SESSION['usuario_id']),
+            'PTI' =>$this->carrinhoModel->PTCarrinho($_SESSION['usuario_id'])
                  
          ];
     endif;
-  
+   
         $this->view('carrinho/resumo', $dados);
     }
    
