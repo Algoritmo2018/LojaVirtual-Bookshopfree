@@ -13,12 +13,11 @@ class Carrinhos extends Controller{
 
     public function resumo(){
         
-        //Verifica si o formulario existe 
-          //Verifica si o formulario existe
-         //Verifica si o formulario existe
-         $formulario = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
          
-           
+             //Verifica si o formulario existe
+        $formulario = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+        if(isset($formulario)):
+            //Dados vindo do formulario cadastrar
             $dados =[ 
              'id_livro' => $formulario['id_livro'],
                  'id_usuario' => $_SESSION['usuario_id'] 
@@ -29,14 +28,33 @@ class Carrinhos extends Controller{
 Url::redirecionar('paginas/index');
         else:
             Sessao::mensagem('livro', 'Erro ao  adicionar Livro ao carrinho');
-       
             Url::redirecionar('paginas/index');
         endif;   
-         
-
+    else:
+        $dados =[ 
+            'itensCarrinho' => $this->carrinhoModel->lerItensCarrinho($_SESSION['usuario_id'])
+                 
+         ];
+    endif;
+  
         $this->view('carrinho/resumo', $dados);
     }
-  
+   
+    public function deletarLivroCarrinho($id){
+ 
+                if($this->carrinhoModel->destruirLivroCarrinho($id)):
+                    Sessao::mensagem('livro', 'Livro retirado do carrinho');
+                else:
+                    Sessao::mensagem('livro', 'Erro ao retirar o livro do carrinho');
+                endif;      
+                Url::redirecionar('carrinhos/resumo');  
+
+                var_dump($id);
+               
+        
+    }
+   
+   
     public function entrar(){
         
         //Verifica si o formulario existe 

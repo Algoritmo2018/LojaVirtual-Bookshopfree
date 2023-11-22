@@ -38,9 +38,9 @@
              </div>
       <div class="s2_itens_right">
         <div class="div_carrinho"><a href="<?=URL?>/usuarios/livros_favoritos"><i class="fa-solid fa-user"></i></a>  </div>
-        <div class="div_carrinho"><a href="<?=URL?>/carrinho/resumo"><i class="fa-solid fa-cart-shopping"></i></a>  </div><div class="div_carrinho">
-        <button  onclick="AbrirMenuPesquisar()"><i class="fa-solid fa-search"></i><button/> 
-      </div> <div class="div_carrinho"><button onclick="AbrirMsgConf()"><i class="fa-solid fa-power-off"></i><button/>  </div>
+        <div class="div_carrinho"><a href="<?=URL?>/carrinhos/resumo"><i class="fa-solid fa-cart-shopping"></i></a>  </div><div class="div_carrinho">
+        <button  onclick="AbrirMenuPesquisar()"><i class="fa-solid fa-search"></i></button> 
+      </div> <div class="div_carrinho"><button onclick="AbrirMsgConf()"><i class="fa-solid fa-power-off"></i></button>  </div>
 
     </section>
     <section id="section3" class="section3"><div class="div_fechar_menu_pesquisar"><p class="fechar_pesquisa" onclick="FecharMenuPesquisar()">X</p>

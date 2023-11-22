@@ -566,8 +566,7 @@ public function livros_favoritos(){
  }
 
  public function destruirLivroFavoritos($id){
-    $formulario = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
-    
+   
      
             if($this->usuarioModel->destruirLivroFavoritos($id)):
                  

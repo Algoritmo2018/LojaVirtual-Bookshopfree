@@ -474,13 +474,17 @@ body {
 
 .section_info_itens_no_carrinho1 {
     margin: 10px 10px;
-    justify-content: center;
+    justify-content: flex-start;
+    align-items: flex-start;
+   /* grid-template-columns: 28% 28% 28%;*/
     display: flex;
+   
 }
 
 .section_info_itens_no_carrinho1 div {
-    margin-left: 5px;
-    margin-right: 5px;
+   margin-left: 5px;
+   margin-right: 5px;
+   width: 170px;
 }
 
 .section_info_itens_no_carrinho1 span {
