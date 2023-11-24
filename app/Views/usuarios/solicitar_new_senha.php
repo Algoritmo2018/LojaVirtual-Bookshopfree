@@ -1,4 +1,7 @@
- 
+ <!-- Msg editado com sucesso -->
+ <div class="msg"><?=Sessao::mensagem('livro')?></div>
+  
+  <!-- Fim -->
   <!-- formularios  solicitar nova senha -->
  <form name="solicitar_new_senha" action="<?=URL?>/usuarios/solicitar_new_senha" method="POST">
 

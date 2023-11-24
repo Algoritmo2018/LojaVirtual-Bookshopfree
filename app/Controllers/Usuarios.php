@@ -8,6 +8,12 @@ class Usuarios extends Controller
         $this->usuarioModel = $this->model('Usuario');
     }
 
+
+    public function enviar_email(){
+        $email = new Email();
+        $email->enviar_email();
+    }
+
 public function cadastrar(){
         
     
@@ -337,18 +343,34 @@ public function cadastrar(){
                 
                if (Checa::checarEmail($formulario['email'])) :
                     $dados['email_erro'] = 'O e-mail informado é invalido';
-             elseif ($this->usuarioModel->checarEmail($formulario['email'])) :
-                    
+               else:
+
  
+               if ($this->usuarioModel->checarEmail($formulario['email'])) :
+                $dados_temp['email']=$formulario['email'];
+                $usuario = $this->usuarioModel->lerUsuarioEmail($dados);
+                $_SESSION['usuario_nome'] = $usuario->nome;
+                $_SESSION['usuario_email'] = $usuario->email;
   $dados['cod_confirmacao'] = random_int(100,10000);
 
-  if ($this->usuarioModel->armazenar_cod_conf($dados)) :
-     echo 'Codigo de confirmção cadastrado com sucesso';
-    Url::redirecionar('usuarios/cod_conf_senha');
-else :
-    die("Erro ao armazenar usuario no banco de dados");
-endif;
+  $email = new Email();
+  $assunto="Este é o seu codigo de confirmação para redifinir a sua senha na loja bookshopfree ".$dados['cod_confirmacao'];
+  $email->enviar_email($_SESSION['usuario_email'], $_SESSION['usuario_nome'], $assunto);
   
+  if($email->resultado == "Email enviado com sucesso!<br>"):
+    if ($this->usuarioModel->armazenar_cod_conf($dados)) : 
+       
+   else :
+       die("Erro ao armazenar usuario no banco de dados");
+   endif;
+   Url::redirecionar('usuarios/cod_conf_senha');
+  else:
+      Sessao::mensagem('livro', "Ligue a sua máquina a internet e tente novamente", 'erro1');
+  endif;
+  
+else:
+    $dados['email_erro'] = 'O e-mail informado não está cadastrado no nosso banco de dados';
+endif;
                 endif;
             endif;
         else :
@@ -357,7 +379,7 @@ endif;
                 'email_erro' => '' 
             ];
         endif; 
-        var_dump($dados);
+      
         $this->view('usuarios/solicitar_new_senha', $dados);
      }
   
@@ -385,13 +407,15 @@ endif;
                 'email' => $dados_temp->email 
             ];
             
-            $dados_usuario = $this->usuarioModel-> lerUsuarioEmail( $dados_temp2); 
+            $dados_usuario = $this->usuarioModel-> lerUsuarioEmail($dados_temp2); 
              
 
             $dados_usuario2 = [
                 'id' => $dados_usuario->id_usuario, 
                 
             ];
+           
+            
             $this->criarSessaoUsuario2($dados_usuario2);
          
             
@@ -409,7 +433,7 @@ endif;
        ];
             
       endif;
-
+ var_dump($_SESSION);
         $this->view('usuarios/cod_conf_senha', $dados);
      }
   //Cria uma sessão

@@ -27,7 +27,7 @@ class Paginas extends Controller {
          'categorias' => $this->categoriaModel->lerCategorias()
     ];
     
-     
+     var_dump($_SESSION);
        $this->view('paginas/home', $dados);
     }
       
@@ -39,8 +39,40 @@ class Paginas extends Controller {
    
  
     public function enviar_feedback(){
-        $dados = [ 
-        ];
+        //Verifica si o formulario existe
+        $formulario = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+        if(isset($formulario)):
+            //Dados vindo do formulario cadastrar
+            $dados =[ 
+                'conteudo' => trim ($formulario['conteudo']),
+                'conteudo_erro' => ''
+            ];
+
+            //Validando os campos do formulario
+            //in_array()- verifica si no array existe campo vazio
+            if(in_array("", $formulario)):
+          
+
+                if(empty($formulario['conteudo'])):
+                    $dados['conteudo_erro'] = 'Escreva alguma cena, na  caixa acima!';
+                endif;
+            
+        else:
+            $email = new Email();
+            $email->enviar_email($_SESSION['usuario_email'], $_SESSION['usuario_nome'], $dados['conteudo']);
+            if($email->resultado == "Email enviado com sucesso!<br>"):
+                Sessao::mensagem('livro', $email->getResultado());
+            else:
+                Sessao::mensagem('livro', $email->getResultado(), 'erro1');
+            endif;
+        endif;
+        else:
+            $dados =[
+                'conteudo' => '', 
+                'conteudo_erro' => ''
+            ]; 
+        endif;
+        
        $this->view('paginas/enviar_feedback', $dados);
     }
     public function estatisticas(){

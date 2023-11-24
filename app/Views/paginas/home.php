@@ -80,6 +80,10 @@
 
     <?php endforeach ?>
 
+    <form name="editar" action="<?=URL?>/usuarios/enviar_email/" method="post">
+                 
+                <button type="submit">Enviar email</button>
+            </form>
 </section>
 <!--Fim Livros carregados-->
 <!-- Fim corpo -->

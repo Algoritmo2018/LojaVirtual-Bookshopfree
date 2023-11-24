@@ -3,6 +3,8 @@ session_start();
 
 include './../app/configuracao.php';
 include './../app/autoload.php';
+require './../composer/vendor/autoload.php';
+
 
 ?>
 
