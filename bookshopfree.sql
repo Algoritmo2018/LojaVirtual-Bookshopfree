@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 13-Nov-2023 às 15:01
+-- Tempo de geração: 24/11/2023 às 09:24
 -- Versão do servidor: 10.4.28-MariaDB
--- versão do PHP: 8.2.4
+-- Versão do PHP: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -20,13 +20,11 @@ SET time_zone = "+00:00";
 --
 -- Banco de dados: `bookshopfree`
 --
-CREATE DATABASE IF NOT EXISTS `bookshopfree` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
-USE `bookshopfree`;
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `autor`
+-- Estrutura para tabela `autor`
 --
 
 CREATE TABLE `autor` (
@@ -35,19 +33,45 @@ CREATE TABLE `autor` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
--- Extraindo dados da tabela `autor`
+-- Despejando dados para a tabela `autor`
 --
 
 INSERT INTO `autor` (`id_autor`, `nome`) VALUES
 (27, 'Donald Trump'),
 (31, 'Napolian Hill'),
 (32, 'Fenrnando Pessoa'),
-(25, 'Kim');
+(25, 'Kim'),
+(33, 'Eoin Colfer'),
+(34, 'Nessahan Alita'),
+(35, 'Alan & Barbara Pease'),
+(36, 'Marcos Aurelio');
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `categoria`
+-- Estrutura para tabela `carrinho`
+--
+
+CREATE TABLE `carrinho` (
+  `id_carrinho` int(6) NOT NULL,
+  `id_usuario` int(6) NOT NULL,
+  `id_livro` int(6) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Despejando dados para a tabela `carrinho`
+--
+
+INSERT INTO `carrinho` (`id_carrinho`, `id_usuario`, `id_livro`) VALUES
+(61, 6, 10),
+(67, 6, 11),
+(68, 6, 12),
+(69, 6, 11);
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `categoria`
 --
 
 CREATE TABLE `categoria` (
@@ -56,19 +80,21 @@ CREATE TABLE `categoria` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
--- Extraindo dados da tabela `categoria`
+-- Despejando dados para a tabela `categoria`
 --
 
 INSERT INTO `categoria` (`id_categoria`, `nome`) VALUES
 (1, 'Contos'),
 (3, 'Aventura'),
 (4, 'Literátura'),
-(5, 'Ciencia');
+(5, 'Ciencia'),
+(6, 'Psicologia'),
+(7, 'Gibbi');
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `checkout_instantaneo`
+-- Estrutura para tabela `checkout_instantaneo`
 --
 
 CREATE TABLE `checkout_instantaneo` (
@@ -79,7 +105,7 @@ CREATE TABLE `checkout_instantaneo` (
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `cod_de_confirmacao_de_senha`
+-- Estrutura para tabela `cod_de_confirmacao_de_senha`
 --
 
 CREATE TABLE `cod_de_confirmacao_de_senha` (
@@ -89,7 +115,7 @@ CREATE TABLE `cod_de_confirmacao_de_senha` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
--- Extraindo dados da tabela `cod_de_confirmacao_de_senha`
+-- Despejando dados para a tabela `cod_de_confirmacao_de_senha`
 --
 
 INSERT INTO `cod_de_confirmacao_de_senha` (`id`, `email`, `cod_confirmacao`) VALUES
@@ -98,12 +124,22 @@ INSERT INTO `cod_de_confirmacao_de_senha` (`id`, `email`, `cod_confirmacao`) VAL
 (3, 'luischilembomateus@gmail.com', 6776),
 (4, 'luischilembomateus@gmail.com', 374),
 (5, 'antoniocarter@gmail.com', 6055),
-(6, 'maria@gmail.com', 7779);
+(6, 'maria@gmail.com', 7779),
+(7, 'luischilembomateus@gmail.com', 589),
+(8, 'lidiateresa@gmail.com', 9622),
+(9, 'luischilembomateus@gmail.com', 7066),
+(10, 'lidiateresa@gmail.com', 7669),
+(11, 'lidiateresa@gmail.com', 4942),
+(12, 'luischilembomateus@gmail.com', 2754),
+(13, 'lidiateresa@gmail.com', 1223),
+(14, 'lidiateresa@gmail.com', 6718),
+(15, 'lidiateresa@gmail.com', 5801),
+(16, 'lidiateresa@gmail.com', 3334);
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `endereco_entrega`
+-- Estrutura para tabela `endereco_entrega`
 --
 
 CREATE TABLE `endereco_entrega` (
@@ -120,7 +156,7 @@ CREATE TABLE `endereco_entrega` (
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `estatistica`
+-- Estrutura para tabela `estatistica`
 --
 
 CREATE TABLE `estatistica` (
@@ -132,7 +168,7 @@ CREATE TABLE `estatistica` (
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `feedback`
+-- Estrutura para tabela `feedback`
 --
 
 CREATE TABLE `feedback` (
@@ -144,7 +180,7 @@ CREATE TABLE `feedback` (
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `hist_compras`
+-- Estrutura para tabela `hist_compras`
 --
 
 CREATE TABLE `hist_compras` (
@@ -158,7 +194,7 @@ CREATE TABLE `hist_compras` (
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `livro`
+-- Estrutura para tabela `livro`
 --
 
 CREATE TABLE `livro` (
@@ -166,27 +202,46 @@ CREATE TABLE `livro` (
   `url_capa` varchar(200) NOT NULL,
   `url_livro` varchar(200) NOT NULL,
   `titulo` varchar(50) NOT NULL,
-  `preco` varchar(20) NOT NULL,
+  `preco` decimal(10,3) NOT NULL,
   `id_categoria` int(6) NOT NULL,
   `id_autor` int(6) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
+--
+-- Despejando dados para a tabela `livro`
+--
+
+INSERT INTO `livro` (`id_livro`, `url_capa`, `url_livro`, `titulo`, `preco`, `id_categoria`, `id_autor`) VALUES
+(10, 'Captura de ecrã_2020-04-01_21-08-41.png', 'A Menina Sem Palavra.pdf', 'Baseball', 2.000, 6, 31),
+(11, 'Captura de ecrã_2020-04-01_19-43-21.png', 'Estudo da Mulher-6362b7210f7cc.pdf', 'Comportamento femenino', 4.000, 6, 34),
+(9, 'Captura de ecrã_2020-04-01_19-39-15-1.png', 'Homem de Ferro - a Manopla - Eoin Colfer.pdf', 'Iron Man', 10.200, 1, 33),
+(12, 'capa-5e84f6c32b5b0-5e84debd70216.png', 'Como Conquistar as Pessoas.pdf', 'construindo amigos', 7.000, 5, 35);
+
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `livros_favoritos`
+-- Estrutura para tabela `livros_favoritos`
 --
 
 CREATE TABLE `livros_favoritos` (
   `id_livros_favoritos` int(6) NOT NULL,
   `id_usuario` int(6) NOT NULL,
-  `id_livro` int(6) NOT NULL
+  `id_livro` int(6) NOT NULL,
+  `cor` varchar(40) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Despejando dados para a tabela `livros_favoritos`
+--
+
+INSERT INTO `livros_favoritos` (`id_livros_favoritos`, `id_usuario`, `id_livro`, `cor`) VALUES
+(12, 6, 12, 'color: rgb(161, 83, 114);'),
+(15, 6, 10, 'color: rgb(161, 83, 114);');
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `tipo_de_envio`
+-- Estrutura para tabela `tipo_de_envio`
 --
 
 CREATE TABLE `tipo_de_envio` (
@@ -197,7 +252,7 @@ CREATE TABLE `tipo_de_envio` (
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `tipo_de_envio_x_usuario`
+-- Estrutura para tabela `tipo_de_envio_x_usuario`
 --
 
 CREATE TABLE `tipo_de_envio_x_usuario` (
@@ -209,7 +264,7 @@ CREATE TABLE `tipo_de_envio_x_usuario` (
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `usuario`
+-- Estrutura para tabela `usuario`
 --
 
 CREATE TABLE `usuario` (
@@ -223,7 +278,7 @@ CREATE TABLE `usuario` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
--- Extraindo dados da tabela `usuario`
+-- Despejando dados para a tabela `usuario`
 --
 
 INSERT INTO `usuario` (`id_usuario`, `titulo`, `nome`, `apelido`, `email`, `data_nascimento`, `senha`) VALUES
@@ -237,98 +292,110 @@ INSERT INTO `usuario` (`id_usuario`, `titulo`, `nome`, `apelido`, `email`, `data
 --
 
 --
--- Índices para tabela `autor`
+-- Índices de tabela `autor`
 --
 ALTER TABLE `autor`
   ADD PRIMARY KEY (`id_autor`);
 
 --
--- Índices para tabela `categoria`
+-- Índices de tabela `carrinho`
+--
+ALTER TABLE `carrinho`
+  ADD PRIMARY KEY (`id_carrinho`);
+
+--
+-- Índices de tabela `categoria`
 --
 ALTER TABLE `categoria`
   ADD PRIMARY KEY (`id_categoria`);
 
 --
--- Índices para tabela `checkout_instantaneo`
+-- Índices de tabela `checkout_instantaneo`
 --
 ALTER TABLE `checkout_instantaneo`
   ADD PRIMARY KEY (`id_check_inst`);
 
 --
--- Índices para tabela `cod_de_confirmacao_de_senha`
+-- Índices de tabela `cod_de_confirmacao_de_senha`
 --
 ALTER TABLE `cod_de_confirmacao_de_senha`
   ADD PRIMARY KEY (`id`);
 
 --
--- Índices para tabela `endereco_entrega`
+-- Índices de tabela `endereco_entrega`
 --
 ALTER TABLE `endereco_entrega`
   ADD PRIMARY KEY (`id_endereco_entrega`);
 
 --
--- Índices para tabela `estatistica`
+-- Índices de tabela `estatistica`
 --
 ALTER TABLE `estatistica`
   ADD PRIMARY KEY (`id_estatistica`);
 
 --
--- Índices para tabela `feedback`
+-- Índices de tabela `feedback`
 --
 ALTER TABLE `feedback`
   ADD PRIMARY KEY (`id_feedback`);
 
 --
--- Índices para tabela `hist_compras`
+-- Índices de tabela `hist_compras`
 --
 ALTER TABLE `hist_compras`
   ADD PRIMARY KEY (`id_hist_pedidos`);
 
 --
--- Índices para tabela `livro`
+-- Índices de tabela `livro`
 --
 ALTER TABLE `livro`
   ADD PRIMARY KEY (`id_livro`);
 
 --
--- Índices para tabela `livros_favoritos`
+-- Índices de tabela `livros_favoritos`
 --
 ALTER TABLE `livros_favoritos`
   ADD PRIMARY KEY (`id_livros_favoritos`);
 
 --
--- Índices para tabela `tipo_de_envio`
+-- Índices de tabela `tipo_de_envio`
 --
 ALTER TABLE `tipo_de_envio`
   ADD PRIMARY KEY (`id_tipo_de_envio`);
 
 --
--- Índices para tabela `tipo_de_envio_x_usuario`
+-- Índices de tabela `tipo_de_envio_x_usuario`
 --
 ALTER TABLE `tipo_de_envio_x_usuario`
   ADD PRIMARY KEY (`id_te_x_usuario`);
 
 --
--- Índices para tabela `usuario`
+-- Índices de tabela `usuario`
 --
 ALTER TABLE `usuario`
   ADD PRIMARY KEY (`id_usuario`);
 
 --
--- AUTO_INCREMENT de tabelas despejadas
+-- AUTO_INCREMENT para tabelas despejadas
 --
 
 --
 -- AUTO_INCREMENT de tabela `autor`
 --
 ALTER TABLE `autor`
-  MODIFY `id_autor` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id_autor` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+
+--
+-- AUTO_INCREMENT de tabela `carrinho`
+--
+ALTER TABLE `carrinho`
+  MODIFY `id_carrinho` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
 
 --
 -- AUTO_INCREMENT de tabela `categoria`
 --
 ALTER TABLE `categoria`
-  MODIFY `id_categoria` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_categoria` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de tabela `checkout_instantaneo`
@@ -340,7 +407,7 @@ ALTER TABLE `checkout_instantaneo`
 -- AUTO_INCREMENT de tabela `cod_de_confirmacao_de_senha`
 --
 ALTER TABLE `cod_de_confirmacao_de_senha`
-  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT de tabela `endereco_entrega`
@@ -370,13 +437,13 @@ ALTER TABLE `hist_compras`
 -- AUTO_INCREMENT de tabela `livro`
 --
 ALTER TABLE `livro`
-  MODIFY `id_livro` int(6) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_livro` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de tabela `livros_favoritos`
 --
 ALTER TABLE `livros_favoritos`
-  MODIFY `id_livros_favoritos` int(6) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_livros_favoritos` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT de tabela `tipo_de_envio`
