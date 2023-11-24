@@ -62,6 +62,8 @@ class Paginas extends Controller {
             $email->enviar_email($_SESSION['usuario_email'], $_SESSION['usuario_nome'], $dados['conteudo']);
             if($email->resultado == "Email enviado com sucesso!<br>"):
                 Sessao::mensagem('livro', $email->getResultado());
+               
+            
             else:
                 Sessao::mensagem('livro', $email->getResultado(), 'erro1');
             endif;

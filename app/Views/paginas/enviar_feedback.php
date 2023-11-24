@@ -12,7 +12,7 @@
     <label for="" style="margin-left: 0px;">*Para casos de duvidas, sugestão ou elogios:</label>
        
       <textarea class="textarea_responsiva" style="border-radius: 10px; padding-left: 5px;" name="conteudo" id=""   placeholder="Escreva:"><?= $dados['conteudo']?></textarea>
-      <small class="erro"> *<?= $dados['conteudo_erro']?></small> 
+      <small class="erro"> <?= $dados['conteudo_erro']?></small> 
     </div>
       <button class="btn_increver-se btn_entrar ml" style="display: block; margin-top: 3px;" type="submit">Enviar</button>  
       </div> 

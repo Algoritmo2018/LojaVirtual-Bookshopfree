@@ -352,20 +352,23 @@ public function cadastrar(){
                 $_SESSION['usuario_nome'] = $usuario->nome;
                 $_SESSION['usuario_email'] = $usuario->email;
   $dados['cod_confirmacao'] = random_int(100,10000);
-
+  
   $email = new Email();
   $assunto="Este é o seu codigo de confirmação para redifinir a sua senha na loja bookshopfree ".$dados['cod_confirmacao'];
   $email->enviar_email($_SESSION['usuario_email'], $_SESSION['usuario_nome'], $assunto);
   
   if($email->resultado == "Email enviado com sucesso!<br>"):
     if ($this->usuarioModel->armazenar_cod_conf($dados)) : 
-       
+        Sessao::mensagem('livro', 'Foi enviado um código de confirmação no seu email, introduza na input');
+         Url::redirecionar('usuarios/cod_conf_senha');
+         
    else :
-       die("Erro ao armazenar usuario no banco de dados");
+    $dados['email_erro'] ="Erro ao armazenar usuario no banco de dados";
    endif;
-   Url::redirecionar('usuarios/cod_conf_senha');
+    
   else:
       Sessao::mensagem('livro', "Ligue a sua máquina a internet e tente novamente", 'erro1');
+      
   endif;
   
 else:
@@ -433,7 +436,7 @@ endif;
        ];
             
       endif;
- var_dump($_SESSION);
+ 
         $this->view('usuarios/cod_conf_senha', $dados);
      }
   //Cria uma sessão

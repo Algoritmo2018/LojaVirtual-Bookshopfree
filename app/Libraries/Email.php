@@ -14,10 +14,7 @@ class Email
         
             return $this->resultado; 
     }
-
-    
-
-    
+ 
     public function enviar_email($email,$nome,$conteudo){
        
 
@@ -25,7 +22,7 @@ $mail = new PHPMailer(true);
 
 try {
     //Server settings
-    $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      
+    $mail->SMTPDebug = 0;                      
     $mail->isSMTP();                                          
     $mail->Host       = 'sandbox.smtp.mailtrap.io';                      
     $mail->SMTPAuth   = true;                                  
@@ -46,14 +43,15 @@ try {
      $mail->send();
 
      
-     $this->resultado = 'Email enviado com sucesso!<br>';
+     $this->resultado = 'A sua mensagem foi enviada com sucesso!<br>';
     
 
 } catch (Exception $e) {
      
-    $this->resultado = "Erro Email não enviado com sucesso. Error PHPMailer: {$mail->ErrorInfo}";
+    $this->resultado = "A sua mensagem não foi enviado com sucesso.";
     
  
 }
+
 }
 }
