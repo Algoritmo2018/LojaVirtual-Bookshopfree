@@ -27,7 +27,7 @@ class Paginas extends Controller {
          'categorias' => $this->categoriaModel->lerCategorias()
     ];
     
-     var_dump($_SESSION);
+     
        $this->view('paginas/home', $dados);
     }
       

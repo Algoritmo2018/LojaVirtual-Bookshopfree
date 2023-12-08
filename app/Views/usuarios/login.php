@@ -15,11 +15,11 @@
     </div>
     <div>
     <label for="senha" style="margin-top: 3px;">Senha:</label>
-    <input class="input_increver-se" type="text" name="senha" id="senha" placeholder="Senha" value="<?=$dados['senha']?>">
+    <input class="input_increver-se" type="password" name="senha" id="senha" placeholder="Senha" value="<?=$dados['senha']?>">
     <small class="erro"> <?= $dados['senha_erro']?></small> 
     </div> 
     <button class="btn_increver-se btn_entrar ml" type="submit">Entrar</button> 
-     <a href="<?=URL?>/usuarios/solicitar_new_senha" class="btn_esquecer"  >Esqueceste da tua palavra-passe</a>
+     <a href="<?=URL?>/usuarios/solicitar_new_senha" class="btn_esquecer"  >Esqueci a minha palavra-passe</a>
     </div>
 
      

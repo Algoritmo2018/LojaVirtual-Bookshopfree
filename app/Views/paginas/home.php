@@ -53,7 +53,7 @@
             <span class="nome_livro"><?= $livro->titulo ?></span>
             <span class="categoria_livro"><?= $livro->categoriaNome ?></span>
             <span class="autor_livro"><?= $livro->autorNome ?></span>
-            <span class="preco_livro">kz <?= $livro->preco ?></span>
+            <span class="preco_livro">USD <?= number_format($livro->preco, 0,',','.') ?></span>
         </div>
       
 
@@ -79,11 +79,7 @@
     </article>
 
     <?php endforeach ?>
-
-    <form name="editar" action="<?=URL?>/usuarios/enviar_email/" method="post">
-                 
-                <button type="submit">Enviar email</button>
-            </form>
+ 
 </section>
 <!--Fim Livros carregados-->
 <!-- Fim corpo -->

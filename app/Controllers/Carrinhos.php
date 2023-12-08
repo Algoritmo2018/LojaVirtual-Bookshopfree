@@ -77,4 +77,29 @@ Url::redirecionar('paginas/index');
         //Verifica si o formulario existe 
         $this->view('carrinho/pagamento', $dados);
     }
+
+    public function BaixarLivros(){
+        $dados =[ 
+            'itensCarrinho' => $this->carrinhoModel->lerItensCarrinho($_SESSION['usuario_id']),
+            'QTI' =>$this->carrinhoModel->QTCarrinho($_SESSION['usuario_id']) 
+                 
+         ];
+     
+         $this->view('carrinho/BaixarLivros', $dados); 
+     
+     }
+
+     public function RealizarCheckout(){
+ 
+        $dados =[ 
+             'itensCarrinho' => $this->carrinhoModel->lerItensCarrinho($_SESSION['usuario_id']),
+        'QTI' =>$this->carrinhoModel->QTCarrinho($_SESSION['usuario_id']),
+        'PTI' =>$this->carrinhoModel->PTCarrinho($_SESSION['usuario_id'])            
+         ];
+
+ 
+ 
+         $checkout = new Checkout();
+         $checkout->RealizarCheckout($dados); 
+     }
 }

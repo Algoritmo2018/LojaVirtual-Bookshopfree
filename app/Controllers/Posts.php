@@ -359,5 +359,8 @@ endif;
       
         $this->view('posts/pesquisa', $dados);
       }
+
+
+     
    
  }

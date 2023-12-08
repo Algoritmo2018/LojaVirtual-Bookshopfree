@@ -9,10 +9,7 @@ class Usuarios extends Controller
     }
 
 
-    public function enviar_email(){
-        $email = new Email();
-        $email->enviar_email();
-    }
+    
 
 public function cadastrar(){
         
@@ -168,7 +165,7 @@ public function cadastrar(){
                  'senha_erro' => ''
              ];
          endif;
-       var_dump($_SESSION);
+      
          $this->view('usuarios/login', $dados);
      }
 
@@ -605,6 +602,9 @@ public function livros_favoritos(){
     Url::redirecionar('usuarios/livros_favoritos');
     
 }
+ 
+
+
 }
 
 
