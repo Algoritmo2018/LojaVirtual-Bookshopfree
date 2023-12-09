@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 24/11/2023 às 09:24
+-- Tempo de geração: 08/12/2023 às 18:46
 -- Versão do servidor: 10.4.28-MariaDB
 -- Versão do PHP: 8.2.4
 
@@ -64,9 +64,10 @@ CREATE TABLE `carrinho` (
 
 INSERT INTO `carrinho` (`id_carrinho`, `id_usuario`, `id_livro`) VALUES
 (61, 6, 10),
-(67, 6, 11),
 (68, 6, 12),
-(69, 6, 11);
+(69, 6, 11),
+(70, 7, 9),
+(73, 6, 9);
 
 -- --------------------------------------------------------
 
@@ -134,7 +135,16 @@ INSERT INTO `cod_de_confirmacao_de_senha` (`id`, `email`, `cod_confirmacao`) VAL
 (13, 'lidiateresa@gmail.com', 1223),
 (14, 'lidiateresa@gmail.com', 6718),
 (15, 'lidiateresa@gmail.com', 5801),
-(16, 'lidiateresa@gmail.com', 3334);
+(16, 'lidiateresa@gmail.com', 3334),
+(17, 'luischilembomateus@gmail.com', 8352),
+(18, 'luischilembomateus@gmail.com', 3101),
+(19, 'luischilembomateus@gmail.com', 208),
+(20, 'luischilembomateus@gmail.com', 6553),
+(21, 'luischilembomateus@gmail.com', 1306),
+(22, 'luischilembomateus@gmail.com', 3175),
+(23, 'luischilembomateus@gmail.com', 6273),
+(24, 'luischilembomateus@gmail.com', 4660),
+(25, 'lidiateresa@gmail.com', 7386);
 
 -- --------------------------------------------------------
 
@@ -202,7 +212,7 @@ CREATE TABLE `livro` (
   `url_capa` varchar(200) NOT NULL,
   `url_livro` varchar(200) NOT NULL,
   `titulo` varchar(50) NOT NULL,
-  `preco` decimal(10,3) NOT NULL,
+  `preco` float(10,2) NOT NULL,
   `id_categoria` int(6) NOT NULL,
   `id_autor` int(6) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
@@ -212,10 +222,10 @@ CREATE TABLE `livro` (
 --
 
 INSERT INTO `livro` (`id_livro`, `url_capa`, `url_livro`, `titulo`, `preco`, `id_categoria`, `id_autor`) VALUES
-(10, 'Captura de ecrã_2020-04-01_21-08-41.png', 'A Menina Sem Palavra.pdf', 'Baseball', 2.000, 6, 31),
-(11, 'Captura de ecrã_2020-04-01_19-43-21.png', 'Estudo da Mulher-6362b7210f7cc.pdf', 'Comportamento femenino', 4.000, 6, 34),
-(9, 'Captura de ecrã_2020-04-01_19-39-15-1.png', 'Homem de Ferro - a Manopla - Eoin Colfer.pdf', 'Iron Man', 10.200, 1, 33),
-(12, 'capa-5e84f6c32b5b0-5e84debd70216.png', 'Como Conquistar as Pessoas.pdf', 'construindo amigos', 7.000, 5, 35);
+(10, 'Captura de ecrã_2020-04-01_21-08-41.png', 'A Menina Sem Palavra.pdf', 'Baseball', 2000.00, 6, 31),
+(11, 'Captura de ecrã_2020-04-01_19-43-21.png', 'Estudo da Mulher-6362b7210f7cc.pdf', 'Comportamento femenino', 4000.00, 6, 34),
+(9, 'Captura de ecrã_2020-04-01_19-39-15-1.png', 'Homem de Ferro - a Manopla - Eoin Colfer.pdf', 'Iron Man', 10200.00, 1, 33),
+(12, 'capa-5e84f6c32b5b0-5e84debd70216.png', 'Como Conquistar as Pessoas.pdf', 'construindo amigos', 7000.00, 5, 35);
 
 -- --------------------------------------------------------
 
@@ -236,7 +246,9 @@ CREATE TABLE `livros_favoritos` (
 
 INSERT INTO `livros_favoritos` (`id_livros_favoritos`, `id_usuario`, `id_livro`, `cor`) VALUES
 (12, 6, 12, 'color: rgb(161, 83, 114);'),
-(15, 6, 10, 'color: rgb(161, 83, 114);');
+(20, 6, 9, 'color: rgb(161, 83, 114);'),
+(22, 6, 11, 'color: rgb(161, 83, 114);'),
+(25, 6, 10, 'color: rgb(161, 83, 114);');
 
 -- --------------------------------------------------------
 
@@ -284,7 +296,7 @@ CREATE TABLE `usuario` (
 INSERT INTO `usuario` (`id_usuario`, `titulo`, `nome`, `apelido`, `email`, `data_nascimento`, `senha`) VALUES
 (9, 'Sra.', 'Maria', 'Mateus', 'maria@gmail.com', '2023-11-25', '123456maria'),
 (8, 'Sr.', 'Antonio', 'Carter', 'antoniocarter@gmail.com', '2023-11-16', 'ludmila123'),
-(7, 'Sra.', 'Lidia', 'Teresa', 'lidiateresa@gmail.com', '2023-11-18', 'altacabeluda'),
+(7, 'Sra.', 'Lidia', 'Teresa', 'lidiateresa@gmail.com', '2023-11-18', 'lilibenga'),
 (6, 'Sr.', 'Luis', 'Mateus', 'luischilembomateus@gmail.com', '2023-11-07', '123456');
 
 --
@@ -389,7 +401,7 @@ ALTER TABLE `autor`
 -- AUTO_INCREMENT de tabela `carrinho`
 --
 ALTER TABLE `carrinho`
-  MODIFY `id_carrinho` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
+  MODIFY `id_carrinho` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=74;
 
 --
 -- AUTO_INCREMENT de tabela `categoria`
@@ -407,7 +419,7 @@ ALTER TABLE `checkout_instantaneo`
 -- AUTO_INCREMENT de tabela `cod_de_confirmacao_de_senha`
 --
 ALTER TABLE `cod_de_confirmacao_de_senha`
-  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT de tabela `endereco_entrega`
@@ -443,7 +455,7 @@ ALTER TABLE `livro`
 -- AUTO_INCREMENT de tabela `livros_favoritos`
 --
 ALTER TABLE `livros_favoritos`
-  MODIFY `id_livros_favoritos` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id_livros_favoritos` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT de tabela `tipo_de_envio`
