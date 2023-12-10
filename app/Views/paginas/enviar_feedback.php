@@ -2,6 +2,7 @@
 <div class="msg"><?=Sessao::mensagem('livro')?></div>
   
   <!-- Fim -->
+ 
  <!-- formulario  Enviar feedback -->
  
  <form name="editar" action="<?=URL?>/paginas/enviar_feedback" method="post">

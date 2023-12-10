@@ -3,7 +3,12 @@
 class Categorias extends Controller{
     public function __construct()
     { 
+        $this->autorModel = $this->model('Autor'); 
         $this->categoriaModel = $this->model('Categoria');
+        $filtro =[
+            'autores' => $this->autorModel->lerAutores(), 
+            'categorias' => $this->categoriaModel->lerCategorias()
+        ];
     } 
 
    

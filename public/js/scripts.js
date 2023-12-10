@@ -64,4 +64,17 @@ function FecharMsgConf(){
 /*fim  Script para abrir Janela de notificação de encerrar conta*/
 
 
+ /*Mostrar e ocultar senha*/
  
+ var btn_mo_senha = document.getElementById("btn_mo_senha");
+var senha= document.getElementById("senha");
+function mostrarOcultarSenha(){
+   
+    if(senha.type == "password"){
+        senha.type = "text";
+        btn_mo_senha.innerHTML="Ocultar";
+    }
+    else{
+        senha.type="password";
+        btn_mo_senha.innerHTML="Mostrar";} 
+}

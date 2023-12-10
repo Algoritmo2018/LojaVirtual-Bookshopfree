@@ -51,7 +51,7 @@
             <span class="nome_livro"><?= $livro->titulo ?></span>
             <span class="categoria_livro"><?= $livro->categoriaNome ?></span>
             <span class="autor_livro"><?= $livro->autorNome ?></span>
-            <span class="preco_livro">kz <?= $livro->preco ?></span>
+            <span class="preco_livro">USD <?= $livro->preco ?></span>
         </div>
         <div class="div_btn_livro div-botao"><button><i class="fa-solid fa-heart"></i></button>
             <button><i class="fa-solid fa-cart-plus"></i></button>

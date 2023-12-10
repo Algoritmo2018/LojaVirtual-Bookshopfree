@@ -198,6 +198,8 @@ public function cadastrar(){
     
     //Editar perfil do usuario
     public function meu_perfil($id){
+
+        if($_SESSION['usuario_id'] == $id):
            //Verifica si o formulario existe
            $formulario = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
            if(isset($formulario)):
@@ -271,7 +273,7 @@ public function cadastrar(){
                 'nome' => $usuario->nome,
                 'apelido' => $usuario->apelido,
                 'email' => $usuario->email,
-                'senha' => $usuario->senha,
+                'senha' => '',
                 'data_nascimento' => $usuario->data_nascimento,
                 'confirmar_senha' => '',
                 'titulo_erro' => '',
@@ -284,14 +286,13 @@ public function cadastrar(){
             ];
                  
            endif;
-   
+        else:
+            Url::redirecionar('paginas/index');
+        endif;
    
         $this->view('usuarios/meu_perfil', $dados);
      }
-     public function meus_enderecos(){
      
-        $this->view('usuarios/meus_enderecos', $dados);
-     }
      public function historico_pedidos(){
      
         $this->view('usuarios/historico_pedidos', $dados);

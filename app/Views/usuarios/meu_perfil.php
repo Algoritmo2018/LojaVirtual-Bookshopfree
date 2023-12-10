@@ -6,8 +6,7 @@
      </div>
      <div><a href="<?= URL ?>/usuarios/meu_perfil/<?= $_SESSION['usuario_id']; ?>">Perfil</a>
      </div>
-     <div><a href="<?= URL ?>/usuarios/meus_enderecos">Endereços</a>
-     </div>
+    
      <div><a href="<?= URL ?>/usuarios/historico_pedidos">Hist. pedidos</a>
     </div>
    

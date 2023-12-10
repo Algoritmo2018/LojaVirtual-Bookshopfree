@@ -4,10 +4,11 @@ class Carrinhos extends Controller{
 
     public function __construct()
     {
-        
         $this->carrinhoModel = $this->model('Carrinho'); 
          
-
+        if(!(isset($_SESSION['usuario_id']))):
+            Url::redirecionar('usuarios/login');
+        endif;
     }
     
 
@@ -24,8 +25,7 @@ class Carrinhos extends Controller{
           ];
          if($this->carrinhoModel->armazenar($dados)):
             Sessao::mensagem('livro', 'Livro adicionado ao carrinho');
-       
-Url::redirecionar('paginas/index');
+            Url::redirecionar('paginas/index');
         else:
             Sessao::mensagem('livro', 'Erro ao  adicionar Livro ao carrinho');
             Url::redirecionar('paginas/index');
@@ -56,27 +56,7 @@ Url::redirecionar('paginas/index');
         
     }
    
-   
-    public function entrar(){
-        
-        //Verifica si o formulario existe 
-        $this->view('carrinho/entrar', $dados);
-    }
-    public function endereco(){
-        
-        //Verifica si o formulario existe 
-        $this->view('carrinho/endereco', $dados);
-    }
-    public function envio(){
-        
-        //Verifica si o formulario existe 
-        $this->view('carrinho/envio', $dados);
-    }
-    public function pagamento(){
-        
-        //Verifica si o formulario existe 
-        $this->view('carrinho/pagamento', $dados);
-    }
+    
 
     public function BaixarLivros(){
         $dados =[ 

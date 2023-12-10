@@ -29,10 +29,9 @@
         </div>
         <div style="  margin-top: 2px;  margin-left: 2px;">
           <label for="">Categoria:</label>
-          <select name="categoria" class="input_increver-se"> 
-          <?php foreach($dados['categorias'] as $categoria): ?> 
+          <select name="categoria" class="input_increver-se">   
               <option value="<?= $categoria->id_categoria ?>"><?= $categoria->nome ?></option> 
-              <?php endforeach ?>
+              
         </select>
           </div>
           <div>

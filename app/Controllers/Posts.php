@@ -9,6 +9,9 @@ class Posts extends Controller{
         $this->categoriaModel = $this->model('Categoria');
         $this->postModel = $this->model('Post');
 
+        if(!(isset($_SESSION['usuario_id']))):
+            Url::redirecionar('usuarios/login');
+        endif;
     }
 
     public function cadastrar(){

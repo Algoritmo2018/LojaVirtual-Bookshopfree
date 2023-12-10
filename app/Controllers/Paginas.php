@@ -6,10 +6,14 @@ class Paginas extends Controller {
     public function __construct()
     {
         
-        $this->autorModel = $this->model('Autor'); 
+     $this->autorModel = $this->model('Autor'); 
         $this->categoriaModel = $this->model('Categoria');
         $this->postModel = $this->model('Post');
         $this->usuarioModel = $this->model('Usuario');
+   
+        if(!(isset($_SESSION['usuario_id']))):
+            Url::redirecionar('usuarios/login');
+        endif;
     }
    
    
@@ -22,9 +26,10 @@ class Paginas extends Controller {
    
       $dados = [
         'autores' => $this->autorModel->lerAutores(), 
+         'categorias' => $this->categoriaModel->lerCategorias(),
          'livros' => $this->postModel->lerLivros(),
          'livros_favoritos' => $this->usuarioModel->lerLivrosFavoritos($_SESSION['usuario_id']),
-         'categorias' => $this->categoriaModel->lerCategorias()
+        
     ];
     
      
@@ -71,17 +76,16 @@ class Paginas extends Controller {
         else:
             $dados =[
                 'conteudo' => '', 
-                'conteudo_erro' => ''
+                'conteudo_erro' => '',
+                'autores' => $this->autorModel->lerAutores(), 
+                'categorias' => $this->categoriaModel->lerCategorias()
             ]; 
+             
         endif;
         
        $this->view('paginas/enviar_feedback', $dados);
     }
-    public function estatisticas(){
-        $dados = [ 
-        ];
-       $this->view('paginas/estatisticas', $dados);
-    }
+     
    
      public function sobre_nos(){
        

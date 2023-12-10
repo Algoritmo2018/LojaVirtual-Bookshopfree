@@ -1,5 +1,5 @@
  <!--inicio Links carrinho -->
-<section class="links_encomenda"><div><a href="<?=URL?>/carrinho/resumo"><button>RESUMO</button></a></div><div><a href="<?=URL?>/carrinho/entrar"><button>ENTRAR</button></a></div><div><a href="<?=URL?>/carrinho/endereco"><button>ENDEREÇO</button></a></div><div><a href="<?=URL?>/carrinho/envio"><button>ENVIO</button></a></div><div><a href="<?=URL?>/carrinho/pagamento"><button>PAGAMENTO</button></a></div></section>
+<section class="links_encomenda"><div><a href="<?=URL?>/carrinho/resumo"><button>LIVROS NO CARRINHO</button></a></div></section>
  <!-- fim Links carrinho-->
 
 <!-- Msg editado com sucesso -->
@@ -34,8 +34,9 @@
   <!-- Fim -->
  
   <section class="section_btns_encomenda">
-    <div> <form name="checkout" action="<?=URL?>/carrinhos/RealizarCheckout" method="post"><button class="btn_increver-se" type="submit">Pagar</button></form></div>
-    <div><a href="" class="ctn_compra">« Continuar compra</a></div>
+  <?php if( $dados['QTI'][0]->{'count(*)'}<>0): ?> <div> <form name="checkout" action="<?=URL?>/carrinhos/RealizarCheckout" method="post"><button class="btn_increver-se" type="submit">Pagar</button></form></div>
+    <?php endif; ?>
+    <div><a href="<?= URL ?>/paginas/home" class="ctn_compra">« Continuar compra</a></div>
    
-    <div><button class="btn_increver-se">Cons. preço</button></div>
+   
   </section>

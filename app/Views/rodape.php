@@ -3,6 +3,8 @@
 </div>
 <!-- Footer-->
 <footer class="rodape">
+<?php if(isset($_SESSION['usuario_id'])):?>
+    <?php if($_SESSION['usuario_id'] == 6):?>
     <section>
         <div>
             <details id="categorias">
@@ -51,6 +53,7 @@
             </details>
         </div>
     </section>
+    <?php endif;?>
     <section>
         <div>
             <details id="categorias">
@@ -68,24 +71,8 @@
             </details>
         </div>
     </section>
-    <section>
-        <div>
-            <details id="categorias">
-                <summary>
-                    Outros:
-                </summary>
-                <article>
-                    <a href="<?=URL?>/usuarios/cadastrar">Cadastrar-se</a>
-                    <br>
-                    <a href="<?=URL?>/usuarios/login">Iniciar sessão</a>
-                    <br>
-                    <a href="<?=URL?>/paginas/enviar_feedback">Enviar Feedback</a>
-                    <br>
-                    <a href="<?=URL?>/paginas/estatisticas">Estatistica</a>
-                </article>
-            </details>
-        </div>
-    </section>
+  
+    <?php endif;?>
 </footer>
 
 <div class="fim_rodape">
