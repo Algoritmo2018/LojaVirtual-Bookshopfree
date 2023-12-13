@@ -287,6 +287,7 @@ public function cadastrar(){
                  
            endif;
         else:
+            Sessao::mensagem('livro', 'Você não tem autorização para acessar está conta');
             Url::redirecionar('paginas/index');
         endif;
    
@@ -307,7 +308,7 @@ public function cadastrar(){
             if($metodo == 'POST'):  
                 if($this->usuarioModel->destruir($id)):
                   
-                    Sessao::mensagem('usuario', 'Conta deletada com suceso');
+                    Sessao::mensagem('usuario', 'Conta deletada com sucesso');
 
                     Url::redirecionar('usuarios/cadastrar');
                 endif;
