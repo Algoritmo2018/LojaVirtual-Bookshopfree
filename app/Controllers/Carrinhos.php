@@ -24,7 +24,7 @@ class Carrinhos extends Controller{
                  'id_usuario' => $_SESSION['usuario_id'] 
           ];
          if($this->carrinhoModel->armazenar($dados)):
-            Sessao::mensagem('livro', 'Livro adicionado ao carrinho');
+            Sessao::mensagem('livro','Livro adicionado ao carrinho');
             Url::redirecionar('paginas/index');
         else:
             Sessao::mensagem('livro', 'Erro ao  adicionar Livro ao carrinho');
@@ -51,7 +51,7 @@ class Carrinhos extends Controller{
                 endif;      
                 Url::redirecionar('carrinhos/resumo');  
 
-                var_dump($id);
+       
                
         
     }

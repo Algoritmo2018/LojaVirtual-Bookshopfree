@@ -9,7 +9,7 @@ class Posts extends Controller{
         $this->categoriaModel = $this->model('Categoria');
         $this->postModel = $this->model('Post');
 
-        if(!(isset($_SESSION['usuario_id']))):
+        if(!isset($_SESSION['usuario_id'])):
             Url::redirecionar('usuarios/login');
         endif;
     }
@@ -150,8 +150,7 @@ if(  $_SESSION['capa']<>"" and $_SESSION['pdf']==""):
             'autores'  => $this->autorModel->lerAutores() 
             ]; 
         endif;
-       
- var_dump($_FILES);
+  
       
         $this->view('posts/cadastrar', $dados);
     }

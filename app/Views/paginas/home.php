@@ -85,4 +85,4 @@
 <!--Fim Livros carregados-->
 <!-- Fim corpo -->
 
-<div class="div_mostrar_mais"><a href="">Mostrar outros livros</a></div>
+ 

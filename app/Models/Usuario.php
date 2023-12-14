@@ -127,7 +127,7 @@ class Usuario {
     }
 
 
-    public function AdicionaraosFavoritos($dados){
+    public function onaraosFavoritos($dados){
         $this->db->query("INSERT INTO livros_favoritos (id_usuario, id_livro, cor) VALUES ( :id_usuario, :id_livro, :cor)");
         
  

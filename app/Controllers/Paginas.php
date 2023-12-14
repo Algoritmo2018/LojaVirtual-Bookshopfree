@@ -11,7 +11,7 @@ class Paginas extends Controller {
         $this->postModel = $this->model('Post');
         $this->usuarioModel = $this->model('Usuario');
    
-        if(!(isset($_SESSION['usuario_id']))):
+        if(!isset($_SESSION['usuario_id'])):
             Url::redirecionar('usuarios/login');
         endif;
     }

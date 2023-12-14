@@ -4,9 +4,11 @@
      </div>
      <div><a href="<?= URL ?>/usuarios/livros_favoritos">Favoritos</a>
      </div>
+     <div><a href="<?= URL ?>/usuarios/painel">Painel</a>
+    </div>
      <div><a href="<?= URL ?>/usuarios/meu_perfil/<?= $_SESSION['usuario_id']; ?>">Perfil</a>
      </div>
-    
+     
      <div><a href="<?= URL ?>/usuarios/historico_pedidos">Hist. pedidos</a>
     </div>
    

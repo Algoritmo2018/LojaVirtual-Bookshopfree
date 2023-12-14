@@ -268,7 +268,7 @@ public function cadastrar(){
                $usuario = $this->usuarioModel->lerUsuarioPorId($id);
     
                $dados = [
-                'id' => $usuario->id_isuario,
+                'id' => $usuario->id_usuario,
                 'titulo' => $usuario->titulo,
                 'nome' => $usuario->nome,
                 'apelido' => $usuario->apelido,
@@ -577,6 +577,19 @@ if (empty($formulario['data_nascimento'])) :
      
  
 }
+
+public function painel(){
+   
+    $dados = [
+    
+   ];
+
+   if($_SESSION['usuario_id']<> 6):
+    Url::redirecionar('paginas/index');
+endif;
+   
+    $this->view('usuarios/painel', $dados);
+ }
 
 public function livros_favoritos(){
    

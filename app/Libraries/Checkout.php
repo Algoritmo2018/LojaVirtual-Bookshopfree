@@ -34,14 +34,7 @@ foreach ($dados['itensCarrinho'] as $dadosp) {
   
 }  
  
- /*
-$items['line_items'][] = [
-  'price_data' => [
-    'currency' => 'brl', 
-    'unit_amount' => $dados['PTI'][0]->{"SUM(livro.preco)"}
-  ],
-  'quantity' => $dados['QTI'][0]->{"count(*)"}
-];*/
+ 
   
  
  
